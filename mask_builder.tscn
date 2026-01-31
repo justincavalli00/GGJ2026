@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://bmsg1knsalqct"]
+
+[ext_resource type="Texture2D" uid="uid://cbhje05c3i8q4" path="res://icon.svg" id="1_ugguo"]
+
+[node name="MaskBuilder" type="Control" unique_id=2055066982]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel_Mask" type="Panel" parent="." unique_id=441179051]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 450.0
+grow_horizontal = 2
+
+[node name="HBox_Mask" type="HBoxContainer" parent="Panel_Mask" unique_id=130972838]
+custom_minimum_size = Vector2(300, 450)
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 450.0
+alignment = 1
+
+[node name="VBox_Left" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=197724527]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Left_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=1601776654]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="Left_Mid" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=248328350]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="Left_Bottom" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=368301365]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="VBox_Right" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=861776236]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Right_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=237005560]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="Right_Mid" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=1157727541]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="Right_Bottom" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=556960485]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="Panel_Offerings" type="Panel" parent="." unique_id=1210837506]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBox_Offering" type="HBoxContainer" parent="Panel_Offerings" unique_id=1240491918]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 200.0
+alignment = 1
+
+[node name="Offering_1" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=348972321]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="Offering_2" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=1606822070]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="Offering_3" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=1772058342]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_ugguo")
+
+[node name="Panel_Effects" type="Panel" parent="." unique_id=1261516881]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_vertical = 2
+
+[node name="VBox_Effects" type="VBoxContainer" parent="Panel_Effects" unique_id=1158528636]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lbl_Active" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=1458793142]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "ACTIVE EFFECTS:"
+
+[node name="Lbl_Effect_1" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=817029272]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Effect #1"
+
+[node name="Lbl_Effect_2" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=807603946]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Effect #2"
+
+[node name="Lbl_Effect_3" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=1288754736]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Effect #3"
+
+[node name="Panel_Start" type="Panel" parent="." unique_id=1795846009]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBox_Start" type="VBoxContainer" parent="Panel_Start" unique_id=765322868]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.5
+offset_top = 12.5
+offset_right = -12.5
+offset_bottom = -12.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Bttn_Start" type="Button" parent="Panel_Start/VBox_Start" unique_id=1287285781]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+text = "START"
