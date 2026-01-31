@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://da8rngcl6g51p"]
+
+[ext_resource type="Script" uid="uid://ddnny6fy7nn4c" path="res://title.gd" id="1_y7k74"]
+
+[node name="Title" type="Control" unique_id=384952872]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y7k74")
+
+[node name="Panel" type="Panel" parent="." unique_id=509926783]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1681363667]
+custom_minimum_size = Vector2(1080, 1080)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -351.5
+offset_right = 351.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1432499360]
+layout_mode = 2
+alignment = 1
+
+[node name="Lbl_Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1156209523]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "GGJ26 - MASK AS DEITY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=899219509]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=827401567]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Bttn_Start" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1020764368]
+layout_mode = 2
+size_flags_vertical = 3
+text = "START"
+
+[node name="Bttn_Credits" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=136052096]
+layout_mode = 2
+size_flags_vertical = 3
+text = "CREDITS"

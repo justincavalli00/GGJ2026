@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://c3aflwcfg4sgl"]
+
+[ext_resource type="Texture2D" uid="uid://833lq6rkersh" path="res://art/placeholders/pawn.png" id="1_q5e70"]
+[ext_resource type="Texture2D" uid="uid://nctf6uke6b8x" path="res://art/placeholders/pentagon_outline.png" id="2_jak2h"]
+[ext_resource type="Texture2D" uid="uid://dpbf8sicmh720" path="res://art/placeholders/skull.png" id="2_wybox"]
+[ext_resource type="Texture2D" uid="uid://f127hl21vt3v" path="res://art/placeholders/pentagon_question.png" id="3_wybox"]
+[ext_resource type="Texture2D" uid="uid://cw7n2rrvdc4qm" path="res://art/placeholders/character.png" id="4_6t5gs"]
+
+[node name="Village" type="Node2D" unique_id=311523632]
+
+[node name="Background" type="Node2D" parent="." unique_id=1947651675]
+
+[node name="Sky" type="ColorRect" parent="Background" unique_id=190095974]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5294118, 0.80784315, 0.92156863, 1)
+
+[node name="Grass" type="ColorRect" parent="Background" unique_id=1313414157]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 582.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07450981, 0.42745098, 0.08235294, 1)
+
+[node name="Totem" type="Node2D" parent="." unique_id=322201034]
+position = Vector2(961, 500)
+scale = Vector2(0.75, 0.75)
+
+[node name="Body" type="Sprite2D" parent="Totem" unique_id=1753183159]
+self_modulate = Color(0.60784316, 0.60784316, 0.60784316, 1)
+scale = Vector2(3, 4.5)
+texture = ExtResource("1_q5e70")
+
+[node name="Face" type="Sprite2D" parent="Totem" unique_id=1953811161]
+position = Vector2(0, -150)
+scale = Vector2(2, 2)
+texture = ExtResource("2_wybox")
+
+[node name="Offerings" type="Node2D" parent="." unique_id=334423806]
+position = Vector2(960, 715)
+rotation = 3.1415925
+scale = Vector2(0.45, 0.45)
+
+[node name="Basket_Empty" type="Sprite2D" parent="Offerings" unique_id=279181620]
+texture = ExtResource("2_jak2h")
+
+[node name="Basket_Full" type="Sprite2D" parent="Offerings" unique_id=724755178]
+visible = false
+texture = ExtResource("3_wybox")
+
+[node name="Followers" type="Node2D" parent="." unique_id=872276873]
+position = Vector2(960, 600)
+scale = Vector2(0.5, 0.5)
+
+[node name="Left" type="Node2D" parent="Followers" unique_id=469403579]
+position = Vector2(-300, 250)
+
+[node name="Follower_1" type="Sprite2D" parent="Followers/Left" unique_id=2072538242]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_2" type="Sprite2D" parent="Followers/Left" unique_id=70805418]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-74, 48)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_3" type="Sprite2D" parent="Followers/Left" unique_id=2106507166]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(78, 48)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_4" type="Sprite2D" parent="Followers/Left" unique_id=342033453]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(30, 120)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_5" type="Sprite2D" parent="Followers/Left" unique_id=434940838]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-150.66667, 132.66667)
+texture = ExtResource("4_6t5gs")
+
+[node name="Center" type="Node2D" parent="Followers" unique_id=943517184]
+position = Vector2(0, 350)
+
+[node name="Follower_1" type="Sprite2D" parent="Followers/Center" unique_id=116202599]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_2" type="Sprite2D" parent="Followers/Center" unique_id=1241954388]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-74, 48)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_3" type="Sprite2D" parent="Followers/Center" unique_id=109729480]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(78, 48)
+texture = ExtResource("4_6t5gs")
+
+[node name="Right" type="Node2D" parent="Followers" unique_id=323237634]
+position = Vector2(300, 250)
+
+[node name="Follower_1" type="Sprite2D" parent="Followers/Right" unique_id=1347758933]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_2" type="Sprite2D" parent="Followers/Right" unique_id=1409990376]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-80, 48)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_3" type="Sprite2D" parent="Followers/Right" unique_id=268932574]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(80, 56)
+texture = ExtResource("4_6t5gs")
+
+[node name="Follower_4" type="Sprite2D" parent="Followers/Right" unique_id=638574145]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(166.66667, 102)
+texture = ExtResource("4_6t5gs")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=24029318]
+position = Vector2(960, 540)
+zoom = Vector2(1.75, 1.75)
