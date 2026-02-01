@@ -14,6 +14,8 @@ func _ready():
 	all_slots += $Panel_Mask/HBox_Mask/VBox_Right.get_children()
 	for maskSlot in all_slots:
 		maskSlot.clicked.connect(_on_slot_clicked.bind(maskSlot))
+		
+	_UpdateEffects()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -41,13 +43,36 @@ func _on_maskPiece_selected(maskPiece):
 		maskSlot.remove_child(maskPiece)
 		selected_maskPiece.get_parent().remove_child(selected_maskPiece)
 		maskSlot.add_child(selected_maskPiece)
+		_UpdateEffects()
 	
 func _on_slot_clicked(maskSlot):
 	if (selected_maskPiece):
 		selected_maskPiece.get_parent().remove_child(selected_maskPiece)
-		maskSlot.add_child(selected_maskPiece)	
-
-
+		maskSlot.add_child(selected_maskPiece)
+		_UpdateEffects()
 
 func _on_bttn_start_pressed():
 	_drawCards()
+
+func _UpdateEffects():
+	var all_slots = []
+	all_slots += $Panel_Mask/HBox_Mask/VBox_Left.get_children()
+	all_slots += $Panel_Mask/HBox_Mask/VBox_Right.get_children()
+	
+	var followers = 0
+	var timeInDay = 0
+	var heretics = 0
+	var offerings = 0
+	
+	for maskSlot in all_slots:
+		# A mask piece is in the slot
+		if maskSlot.get_child(0) != null:
+			followers += maskSlot.get_child(0).mask_piece_data.followers
+			timeInDay += maskSlot.get_child(0).mask_piece_data.time_in_day
+			heretics += maskSlot.get_child(0).mask_piece_data.heretics
+			offerings += maskSlot.get_child(0).mask_piece_data.offerings
+	
+	$Panel_Effects/VBox_Effects/Lbl_Effect_1.text = "Followers: " + str(followers)
+	$Panel_Effects/VBox_Effects/Lbl_Effect_2.text = "Time In Day: " + str(timeInDay)
+	$Panel_Effects/VBox_Effects/Lbl_Effect_3.text = "Heretics: " + str(heretics)
+	$Panel_Effects/VBox_Effects/Lbl_Effect_4.text = "Offerings: " + str(offerings)

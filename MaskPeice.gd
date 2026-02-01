@@ -1,6 +1,7 @@
 extends Control
 @export var followers: int = 0
 @export var equipableSlots  = [false, false, false, false, false, false]
+@export var mask_piece_data : Mask_Piece_Data
 
 var hovering: bool = false
 var dragging: bool = true
@@ -38,7 +39,7 @@ func _on_mouse_exited():
 func _togglePanel(value):
 	var panel = get_node("Panel")	
 	panel.visible = value
-	panel.get_child(0).text = "Name" + str(id)
+	panel.get_child(0).text = mask_piece_data.piece + "\n" + "Heretics: " + str(mask_piece_data.followers) + "\n" + "Time In Day: " + str(mask_piece_data.time_in_day) + "\n" + "Followers: " + str(mask_piece_data.followers) + "\n" + "Offerings: " + str(mask_piece_data.offerings)
 	
 
 
