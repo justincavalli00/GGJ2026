@@ -1,13 +1,14 @@
 [gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://cenyrsd130ec7"]
 
-[ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_piece_data.gd" id="1_217sb"]
-[ext_resource type="Texture2D" uid="uid://c7leok36abkwh" path="res://art/masks/Mask2.png" id="1_ypm6w"]
+[ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="1_217sb"]
+[ext_resource type="Texture2D" uid="uid://116x24s3xkha" path="res://art/masks/mask1-pieces/mask1-topRight.png" id="1_lbk22"]
 
 [resource]
 script = ExtResource("1_217sb")
-followers = -10
-time_in_day = -1.0
-heretics = 2
-offerings = -1
-mask_piece_sprite = ExtResource("1_ypm6w")
+piece = "Wooden Head"
+followers = 1
+position = 63
+mask_piece_sprite = ExtResource("1_lbk22")
+effect = "Add 1 follower"
+mask_type = 1
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

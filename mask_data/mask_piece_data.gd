@@ -8,6 +8,7 @@ class_name Mask_Piece_Data extends Resource
 @export var heretics : int
 @export var offerings : int
 @export var mask_piece_sprite: Texture2D
+@export var effect :String
+@export_enum("Unassigned", "Wooden", "Iron", "Cursed") var mask_type:int
 
-#TODO: ADD TYPE
-#TODO ACTIVE EFFECTS
+#DONE: ADD TYPE
