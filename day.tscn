@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c3aflwcfg4sgl"]
 
 [ext_resource type="Script" uid="uid://fm1gloh7h61b" path="res://day.gd" id="1_lqptk"]
-[ext_resource type="Texture2D" uid="uid://833lq6rkersh" path="res://art/placeholders/pawn.png" id="1_q5e70"]
 [ext_resource type="Texture2D" uid="uid://dxwmhw5cssa7" path="res://art/ground.png" id="2_8msho"]
 [ext_resource type="Texture2D" uid="uid://nctf6uke6b8x" path="res://art/placeholders/pentagon_outline.png" id="2_jak2h"]
 [ext_resource type="Texture2D" uid="uid://cweusm3jk2j0r" path="res://art/background.png" id="3_dvden"]
@@ -11,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b3kf560wgqeaw" path="res://art/houses.png" id="5_yh4v0"]
 [ext_resource type="Texture2D" uid="uid://b0084dhctr2ot" path="res://art/cloud 1 .png" id="6_asg04"]
 [ext_resource type="Texture2D" uid="uid://ct83e5gptqs6p" path="res://art/cloud 2.png" id="7_1p1ot"]
+[ext_resource type="Texture2D" uid="uid://bp5ykj6g21pql" path="res://art/totem.png" id="9_fe8xe"]
 
 [sub_resource type="Animation" id="Animation_lqptk"]
 length = 0.001
@@ -142,10 +142,9 @@ position = Vector2(961, 500)
 scale = Vector2(0.5, 0.5)
 
 [node name="Body" type="Sprite2D" parent="Totem" unique_id=1753183159]
-self_modulate = Color(0.60784316, 0.60784316, 0.60784316, 1)
 position = Vector2(0, 184.66693)
-scale = Vector2(1.5625, 2.5520835)
-texture = ExtResource("1_q5e70")
+scale = Vector2(0.2890307, 0.4720835)
+texture = ExtResource("9_fe8xe")
 
 [node name="Face" type="Node2D" parent="Totem" unique_id=1953811161]
 position = Vector2(0, -130)
