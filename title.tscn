@@ -52,15 +52,21 @@ layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
+[node name="Bttn_Credits" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=136052096]
+layout_mode = 2
+size_flags_vertical = 3
+text = "START"
+
 [node name="Bttn_Start" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1020764368]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 text = "DAY "
 
-[node name="Bttn_Credits" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=136052096]
+[node name="Bttn_Music" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1020764369]
 layout_mode = 2
 size_flags_vertical = 3
-text = "MASK BUILDER"
+text = "Music: On"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=632246764]
 custom_minimum_size = Vector2(0, 50)

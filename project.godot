@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SessionData="*res://SessionData.gd"
+BackgroundMusic="*res://BackgroundMusic.gd"
 
 [display]
 
