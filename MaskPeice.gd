@@ -39,7 +39,16 @@ func _on_mouse_exited():
 func _togglePanel(value):
 	var panel = get_node("Panel")	
 	panel.visible = value
-	panel.get_child(0).text = mask_piece_data.piece + "\n" + "Heretics: " + str(mask_piece_data.followers) + "\n" + "Time In Day: " + str(mask_piece_data.time_in_day) + "\n" + "Followers: " + str(mask_piece_data.followers) + "\n" + "Offerings: " + str(mask_piece_data.offerings)
+	var tooltip_text = mask_piece_data.piece
+	if mask_piece_data.heretics != 0:
+		tooltip_text += "\n" + "Heretics: " + str(mask_piece_data.heretics)
+	if mask_piece_data.time_in_day != 0:
+		tooltip_text += "\n" + "Time In Day: " + str(mask_piece_data.time_in_day)
+	if mask_piece_data.followers != 0:
+		tooltip_text += "\n" + "Followers: " + str(mask_piece_data.followers)
+	if mask_piece_data.offerings != 0:
+		tooltip_text += "\n" + "Offerings: " + str(mask_piece_data.offerings)
+	panel.get_child(0).text = tooltip_text
 	
 
 

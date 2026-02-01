@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fm1gloh7h61b" path="res://day.gd" id="1_lqptk"]
 [ext_resource type="Texture2D" uid="uid://833lq6rkersh" path="res://art/placeholders/pawn.png" id="1_q5e70"]
 [ext_resource type="Texture2D" uid="uid://nctf6uke6b8x" path="res://art/placeholders/pentagon_outline.png" id="2_jak2h"]
-[ext_resource type="Texture2D" uid="uid://dpbf8sicmh720" path="res://art/placeholders/skull.png" id="2_wybox"]
+[ext_resource type="Texture2D" uid="uid://bu16ejltvi1fg" path="res://art/masks/mask1.png" id="3_lqptk"]
 [ext_resource type="Texture2D" uid="uid://f127hl21vt3v" path="res://art/placeholders/pentagon_question.png" id="3_wybox"]
 [ext_resource type="Texture2D" uid="uid://cw7n2rrvdc4qm" path="res://art/placeholders/character.png" id="4_6t5gs"]
 
@@ -102,16 +102,17 @@ scale = Vector2(0.75, 0.75)
 
 [node name="Body" type="Sprite2D" parent="Totem" unique_id=1753183159]
 self_modulate = Color(0.60784316, 0.60784316, 0.60784316, 1)
-scale = Vector2(3, 4.5)
+position = Vector2(0, 184.66693)
+scale = Vector2(1.5625, 2.5520835)
 texture = ExtResource("1_q5e70")
 
 [node name="Face" type="Sprite2D" parent="Totem" unique_id=1953811161]
-position = Vector2(0, -150)
-scale = Vector2(2, 2)
-texture = ExtResource("2_wybox")
+position = Vector2(0, -130)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_lqptk")
 
 [node name="Offerings" type="Node2D" parent="." unique_id=334423806]
-position = Vector2(960, 715)
+position = Vector2(960.00006, 755.00006)
 rotation = 3.1415925
 scale = Vector2(0.45, 0.45)
 
@@ -123,7 +124,7 @@ visible = false
 texture = ExtResource("3_wybox")
 
 [node name="Followers" type="Node2D" parent="." unique_id=872276873]
-position = Vector2(960, 600)
+position = Vector2(960, 680)
 scale = Vector2(0.5, 0.5)
 
 [node name="Left" type="Node2D" parent="Followers" unique_id=469403579]
@@ -194,7 +195,6 @@ texture = ExtResource("4_6t5gs")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=24029318]
 position = Vector2(960, 540)
-zoom = Vector2(1.75, 1.75)
 
 [node name="Canvas" type="CanvasLayer" parent="." unique_id=1072350791]
 
@@ -212,8 +212,13 @@ theme_override_constants/margin_bottom = 25
 [node name="VBox_Goal" type="VBoxContainer" parent="Canvas/Margin_Goal" unique_id=1573353845]
 layout_mode = 2
 
+[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=957192335]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
 [node name="Lbl_Goal" type="Label" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=1485648699]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "FIND THE HERETIC!"
 horizontal_alignment = 1
@@ -223,7 +228,7 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "10"
-horizontal_alignment = 2
+horizontal_alignment = 1
 
 [node name="Anim_Goal" type="AnimationPlayer" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=1877851894]
 libraries/ = SubResource("AnimationLibrary_kbc73")

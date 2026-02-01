@@ -8,6 +8,7 @@ class_name Mask_Piece_Data extends Resource
 @export var heretics : int
 @export var offerings : int
 @export var mask_piece_sprite: Texture2D
+@export_flags("Round 1", "Round 2", "Round 3", "Round 4", "Round 5", "Round 6") var available_in_round : int
 
 #TODO: ADD TYPE
 #TODO ACTIVE EFFECTS

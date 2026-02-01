@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_217sb")
-followers = -10
-time_in_day = -1.0
-heretics = 2
-offerings = -1
+piece = "Smiles of Athena"
+followers = 2
+position = 63
 mask_piece_sprite = ExtResource("1_ypm6w")
+available_in_round = 1
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

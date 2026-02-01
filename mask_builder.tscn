@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ddqkx0ubmfnrw" path="res://art/placeholders/bg-topRight.png" id="6_ofsgg"]
 [ext_resource type="Texture2D" uid="uid://duj7h2b6mf6je" path="res://art/placeholders/bg-middleRight.png" id="7_e6uco"]
 [ext_resource type="Texture2D" uid="uid://cpjhiuml47k40" path="res://art/placeholders/bg-bottomRight.png" id="8_6q0x0"]
+[ext_resource type="Texture2D" uid="uid://cw7n2rrvdc4qm" path="res://art/placeholders/character.png" id="9_vvqym"]
 
 [node name="MaskBuilder" type="Control" unique_id=118971534]
 layout_mode = 3
@@ -102,6 +103,76 @@ texture = ExtResource("8_6q0x0")
 expand_mode = 2
 script = ExtResource("3_i4fcx")
 
+[node name="Followers" type="Node2D" parent="Panel_Mask" unique_id=1370970037]
+position = Vector2(654, 283)
+scale = Vector2(0.5, 0.5)
+
+[node name="Left" type="Node2D" parent="Panel_Mask/Followers" unique_id=2090164170]
+position = Vector2(-300, 250)
+
+[node name="Follower_1" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=1025138276]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_2" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=1957329650]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-74, 48)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_3" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=2129300135]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(78, 48)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_4" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=861786226]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(30, 120)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_5" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=138858422]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-150.66667, 132.66667)
+texture = ExtResource("9_vvqym")
+
+[node name="Center" type="Node2D" parent="Panel_Mask/Followers" unique_id=1533736870]
+position = Vector2(0, 350)
+
+[node name="Follower_1" type="Sprite2D" parent="Panel_Mask/Followers/Center" unique_id=1441723136]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_2" type="Sprite2D" parent="Panel_Mask/Followers/Center" unique_id=1026512573]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-74, 48)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_3" type="Sprite2D" parent="Panel_Mask/Followers/Center" unique_id=933563218]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(78, 48)
+texture = ExtResource("9_vvqym")
+
+[node name="Right" type="Node2D" parent="Panel_Mask/Followers" unique_id=1534622719]
+position = Vector2(300, 250)
+
+[node name="Follower_1" type="Sprite2D" parent="Panel_Mask/Followers/Right" unique_id=1846840121]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_2" type="Sprite2D" parent="Panel_Mask/Followers/Right" unique_id=2067997112]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-80, 48)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_3" type="Sprite2D" parent="Panel_Mask/Followers/Right" unique_id=1459612663]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(80, 56)
+texture = ExtResource("9_vvqym")
+
+[node name="Follower_4" type="Sprite2D" parent="Panel_Mask/Followers/Right" unique_id=1821312534]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(166.66667, 102)
+texture = ExtResource("9_vvqym")
+
 [node name="Panel_Offerings" type="Panel" parent="." unique_id=439365641]
 layout_mode = 1
 anchors_preset = 7
@@ -159,6 +230,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Lbl_Current_Round" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=1648776455]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Current Round"
 
 [node name="Lbl_Active" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=784001063]
 layout_mode = 2
