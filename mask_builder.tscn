@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmsg1knsalqct"]
+[gd_scene format=3 uid="uid://bmsg1knsalqct"]
 
-[ext_resource type="Script" path="res://GameManager.gd" id="1_7cfo4"]
+[ext_resource type="Script" uid="uid://l8vjstan61te" path="res://GameManager.gd" id="1_7cfo4"]
 [ext_resource type="Texture2D" uid="uid://cbhje05c3i8q4" path="res://icon.svg" id="1_ugguo"]
-[ext_resource type="Script" path="res://MaskSlot.gd" id="3_i4fcx"]
+[ext_resource type="Texture2D" uid="uid://cbq5l3jxn2ien" path="res://art/placeholders/bg-topLeft.png" id="2_lpdfi"]
+[ext_resource type="Script" uid="uid://rqld00bsjbh0" path="res://MaskSlot.gd" id="3_i4fcx"]
+[ext_resource type="Texture2D" uid="uid://dpeugnd4bkqb0" path="res://art/placeholders/bg-middleLeft.png" id="4_vvqym"]
+[ext_resource type="Texture2D" uid="uid://bda5dfyrxm3ts" path="res://art/placeholders/bg-bottomLeft.png" id="5_e725m"]
+[ext_resource type="Texture2D" uid="uid://ddqkx0ubmfnrw" path="res://art/placeholders/bg-topRight.png" id="6_ofsgg"]
+[ext_resource type="Texture2D" uid="uid://duj7h2b6mf6je" path="res://art/placeholders/bg-middleRight.png" id="7_e6uco"]
+[ext_resource type="Texture2D" uid="uid://cpjhiuml47k40" path="res://art/placeholders/bg-bottomRight.png" id="8_6q0x0"]
 
-[node name="MaskBuilder" type="Control"]
+[node name="MaskBuilder" type="Control" unique_id=118971534]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +20,7 @@ grow_vertical = 2
 script = ExtResource("1_7cfo4")
 drawCount = 3
 
-[node name="Panel_Mask" type="Panel" parent="."]
+[node name="Panel_Mask" type="Panel" parent="." unique_id=1468931161]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -24,69 +30,75 @@ offset_right = 150.0
 offset_bottom = 450.0
 grow_horizontal = 2
 
-[node name="HBox_Mask" type="HBoxContainer" parent="Panel_Mask"]
+[node name="HBox_Mask" type="HBoxContainer" parent="Panel_Mask" unique_id=1519705883]
 custom_minimum_size = Vector2(300, 450)
 layout_mode = 0
 offset_right = 304.0
 offset_bottom = 450.0
 alignment = 1
 
-[node name="VBox_Left" type="VBoxContainer" parent="Panel_Mask/HBox_Mask"]
+[node name="VBox_Left" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=105798737]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Left_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left"]
+[node name="Left_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=1508198766]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("2_lpdfi")
+expand_mode = 2
 script = ExtResource("3_i4fcx")
 
-[node name="Left_Mid" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left"]
+[node name="Left_Mid" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=1775748460]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("4_vvqym")
+expand_mode = 2
 script = ExtResource("3_i4fcx")
 
-[node name="Left_Bottom" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left"]
+[node name="Left_Bottom" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=642158878]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("5_e725m")
+expand_mode = 2
 script = ExtResource("3_i4fcx")
 
-[node name="VBox_Right" type="VBoxContainer" parent="Panel_Mask/HBox_Mask"]
+[node name="VBox_Right" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=295311598]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Right_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right"]
+[node name="Right_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=330070472]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("6_ofsgg")
+expand_mode = 2
 script = ExtResource("3_i4fcx")
 
-[node name="Right_Mid" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right"]
+[node name="Right_Mid" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=2136730261]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("7_e6uco")
+expand_mode = 2
 script = ExtResource("3_i4fcx")
 
-[node name="Right_Bottom" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right"]
+[node name="Right_Bottom" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=56748151]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("8_6q0x0")
+expand_mode = 2
 script = ExtResource("3_i4fcx")
 
-[node name="Panel_Offerings" type="Panel" parent="."]
+[node name="Panel_Offerings" type="Panel" parent="." unique_id=439365641]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -100,32 +112,32 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HBox_Offering" type="HBoxContainer" parent="Panel_Offerings"]
+[node name="HBox_Offering" type="HBoxContainer" parent="Panel_Offerings" unique_id=1920207764]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_right = 600.0
 offset_bottom = 200.0
 alignment = 1
 
-[node name="Offering_1" type="TextureRect" parent="Panel_Offerings/HBox_Offering"]
+[node name="Offering_1" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=1621278620]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("1_ugguo")
 
-[node name="Offering_2" type="TextureRect" parent="Panel_Offerings/HBox_Offering"]
+[node name="Offering_2" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=1826784068]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("1_ugguo")
 
-[node name="Offering_3" type="TextureRect" parent="Panel_Offerings/HBox_Offering"]
+[node name="Offering_3" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=904662185]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("1_ugguo")
 
-[node name="Panel_Effects" type="Panel" parent="."]
+[node name="Panel_Effects" type="Panel" parent="." unique_id=2030293252]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -135,7 +147,7 @@ offset_right = 300.0
 offset_bottom = 100.0
 grow_vertical = 2
 
-[node name="VBox_Effects" type="VBoxContainer" parent="Panel_Effects"]
+[node name="VBox_Effects" type="VBoxContainer" parent="Panel_Effects" unique_id=884934485]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -144,32 +156,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Lbl_Active" type="Label" parent="Panel_Effects/VBox_Effects"]
+[node name="Lbl_Active" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=784001063]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "ACTIVE EFFECTS:"
 
-[node name="Lbl_Effect_1" type="Label" parent="Panel_Effects/VBox_Effects"]
+[node name="Lbl_Effect_1" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=1589705385]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Effect #1"
 
-[node name="Lbl_Effect_2" type="Label" parent="Panel_Effects/VBox_Effects"]
+[node name="Lbl_Effect_2" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=564641031]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Effect #2"
 
-[node name="Lbl_Effect_3" type="Label" parent="Panel_Effects/VBox_Effects"]
+[node name="Lbl_Effect_3" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=1564177559]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Effect #3"
 
-[node name="Lbl_Effect_4" type="Label" parent="Panel_Effects/VBox_Effects"]
+[node name="Lbl_Effect_4" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=838326210]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Effect #3"
 
-[node name="Panel_Start" type="Panel" parent="."]
+[node name="Panel_Start" type="Panel" parent="." unique_id=291847096]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -181,7 +193,7 @@ offset_top = -100.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="VBox_Start" type="VBoxContainer" parent="Panel_Start"]
+[node name="VBox_Start" type="VBoxContainer" parent="Panel_Start" unique_id=1609840842]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -194,7 +206,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Bttn_Start" type="Button" parent="Panel_Start/VBox_Start"]
+[node name="Bttn_Start" type="Button" parent="Panel_Start/VBox_Start" unique_id=950753835]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
