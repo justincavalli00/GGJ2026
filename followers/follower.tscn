@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6wtfr7o287yc" path="res://art/newHuman/leftarm.png" id="4_pnuqx"]
 [ext_resource type="Texture2D" uid="uid://dq6xr4t5oads1" path="res://art/newHuman/rightarm.png" id="5_438re"]
 [ext_resource type="Script" path="res://followers/ClickFollower.gd" id="6_erk2p"]
+[ext_resource type="Texture2D" uid="uid://cmrj8egiyybsb" path="res://houses.png" id="7_pnuqx"]
 
 [sub_resource type="Animation" id="Animation_3mtco"]
 length = 0.001
@@ -104,6 +105,30 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("SmiteParticles:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_erk2p"]
@@ -251,17 +276,73 @@ tracks/5/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_438re"]
+resource_name = "smite"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.13333333, 0.16666669, 0.23333333, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.3199997), Vector2(1, 0.3199997), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SmiteParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06666666, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.06666667, 0.13333336, 0.16666669),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(-2, 19)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_erk2p"]
 _data = {
 &"RESET": SubResource("Animation_3mtco"),
 &"anim_follower_idle": SubResource("Animation_erk2p"),
 &"anim_follower_walk": SubResource("Animation_arita"),
-&"cheer": SubResource("Animation_pnuqx")
+&"cheer": SubResource("Animation_pnuqx"),
+&"smite": SubResource("Animation_438re")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arita"]
 radius = 17.0
 height = 106.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ffsgb"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+angle_min = -528.7
+angle_max = -355.19998
+spread = 81.988
+flatness = 0.095
+angular_velocity_min = -358.45
+angular_velocity_max = 297.64996
+gravity = Vector3(0, -100, 0)
+radial_accel_min = 43.209995
+radial_accel_max = 43.209995
+scale_min = 0.19999999
+scale_max = 0.29999998
 
 [node name="Follower" type="Node2D" unique_id=1431547832]
 script = ExtResource("1_arita")
@@ -302,3 +383,17 @@ script = ExtResource("6_erk2p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=4308045]
 position = Vector2(0, 42)
 shape = SubResource("CapsuleShape2D_arita")
+
+[node name="SmiteParticles" type="GPUParticles2D" parent="." unique_id=317490689]
+emitting = false
+amount = 20
+amount_ratio = 0.4899
+texture = ExtResource("7_pnuqx")
+lifetime = 4.52
+one_shot = true
+preprocess = 1.0
+speed_scale = 5.0
+explosiveness = 0.64
+randomness = 1.0
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_ffsgb")
