@@ -52,7 +52,7 @@ func _on_slot_clicked(maskSlot):
 		_UpdateEffects()
 
 func _on_bttn_start_pressed():
-	_drawCards()
+	get_tree().change_scene_to_file("res://day.tscn")
 
 func _UpdateEffects():
 	var all_slots = []

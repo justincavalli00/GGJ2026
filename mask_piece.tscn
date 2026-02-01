@@ -2,14 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://cbhje05c3i8q4" path="res://icon.svg" id="1_kl2rv"]
 [ext_resource type="Script" path="res://MaskPeice.gd" id="2_15bae"]
-[ext_resource type="Resource" uid="uid://7r8v0yr6v2ty" path="res://data_piece_01.tres" id="2_hthy8"]
+[ext_resource type="Resource" uid="uid://eegtmd75v5n5" path="res://mask_data/data_piece_01.tres" id="2_ppwiv"]
 
 [node name="MaskPiece" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("2_15bae")
 followers = 5
-mask_piece_data = ExtResource("2_hthy8")
+mask_piece_data = ExtResource("2_ppwiv")
 
 [node name="Icon" type="TextureRect" parent="."]
 modulate = Color(0, 1, 0.270588, 1)
