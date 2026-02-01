@@ -4,6 +4,11 @@ extends Control
 
 func _ready():
 	bttn_start.pressed.connect(Pressed_Start)
+	bttn_credits.pressed.connect(Pressed_Credits)
+
 	
 func Pressed_Start():
-	get_tree().change_scene_to_file("res://village.tscn")
+	get_tree().change_scene_to_file("res://day.tscn")
+
+func Pressed_Credits():
+	get_tree().change_scene_to_file("res://mask_builder.tscn")

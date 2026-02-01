@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cal0kopt7ner4"]
+[gd_scene format=3 uid="uid://cal0kopt7ner4"]
 
 [ext_resource type="Texture2D" uid="uid://cbhje05c3i8q4" path="res://icon.svg" id="1_kl2rv"]
 [ext_resource type="Script" path="res://MaskPeice.gd" id="2_15bae"]
