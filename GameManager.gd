@@ -1,6 +1,7 @@
 extends Control
 
 const MASK_DATA_PATH := "res://mask_data/"
+const FOLLOWER := preload("res://followers/follower.tscn")
 
 @export var drawCount : int
 var MaskScene
@@ -24,6 +25,7 @@ func _ready():
 	for maskSlot in all_slots:
 		maskSlot.clicked.connect(_on_slot_clicked.bind(maskSlot))
 	_UpdateEffects()
+	_UpdateFollowers()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -213,3 +215,35 @@ func _UpdateEffects():
 	var lbl_synergy = get_node_or_null("Panel_Effects/VBox_Effects/Lbl_Synergy")
 	if lbl_synergy:
 		lbl_synergy.text = synergy_text
+	_UpdateFollowers()
+
+func _get_mask_follower_count() -> int:
+	var n := 0
+	var all_slots = _get_all_mask_slots()
+	for maskSlot in all_slots:
+		if maskSlot.get_child_count() > 0:
+			var piece = maskSlot.get_child(0)
+			var data = piece.mask_piece_data if piece.get("mask_piece_data") != null else null
+			if data is Mask_Piece_Data:
+				n += data.followers
+	return n
+
+func _UpdateFollowers() -> void:
+	var count := _get_mask_follower_count()
+	var container = get_node_or_null("Panel_Mask/Followers")
+	if container == null:
+		return
+	for child in container.get_children():
+		container.remove_child(child)
+		child.queue_free()
+	const COLS := 5
+	const SPACING_X := 96
+	const SPACING_Y := 120
+	const OFFSET_X := -230
+	const OFFSET_Y := 200
+	for i in range(count):
+		var f = FOLLOWER.instantiate()
+		var pos = Vector2(OFFSET_X + (i % COLS) * SPACING_X, OFFSET_Y + (i / COLS) * SPACING_Y)
+		f.position = pos
+		container.add_child(f)
+		f.Set_Target(f.global_position)

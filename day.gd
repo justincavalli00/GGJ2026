@@ -15,6 +15,8 @@ extends Node2D
 var current_followers: int = 0
 ## Base heretic_count + sum of heretics from all mask pieces. Set in _ready().
 var current_heretics: int = 0
+## Number of (non-heretic) followers clicked/smitten this day. Subtracted from base before multiplier.
+var followers_smitten: int = 0
 
 const FOLLOWER = preload("uid://dyhajxfwyll2q")
 
@@ -29,6 +31,7 @@ const FOLLOWER = preload("uid://dyhajxfwyll2q")
 @onready var lbl_mask_multi_num: Label = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5/Lbl_Mask_Multi_Num
 var _session: Node = null  # SessionData autoload, set in _ready()
 var lbl_gained: Label = null  # optional; set in _ready() if node exists
+var lbl_smitten_num: Label = null  # optional; set in _ready() if node exists
 @onready var anim_goal: AnimationPlayer = $Canvas/Margin_Goal/VBox_Goal/Anim_Goal
 @onready var spawn: Node2D = $Followers/Spawn
 @onready var group: Node2D = $Followers/Group
@@ -44,6 +47,7 @@ func _ready() -> void:
 	else:
 		current_followers = _session.get_base_followers()
 	lbl_gained = get_node_or_null("Canvas/Margin_Goal/Pnl_Results/VBox_Results/Lbl_Gained")
+	lbl_smitten_num = get_node_or_null("Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBox_Smitten/Lbl_Smitten_Num")
 	bttn_next.pressed.connect(Pressed_Next)
 	pnl_results.visible = false
 	_build_totem_face()
@@ -117,8 +121,8 @@ func Spawn_Followers() -> void:
 		add_child(follower)
 		follower.add_to_group("followers")  # Important for flocking!
 
-		# Add click signal handler for follower
-		follower.clicked.connect(on_follower_clicked)
+		# Add click signal handler for follower (pass node so we can remove it when smitten)
+		follower.clicked.connect(on_follower_clicked.bind(follower))
 
 		# Set initial position
 		follower.global_position = random_spawn.global_position
@@ -179,7 +183,7 @@ func Start_Day():
 func Pressed_Next() -> void:
 	if _session == null:
 		return
-	var total: int = _session.get_followers_added()
+	var total: int = _session.get_followers_added_with_smitten(followers_smitten)
 	var required: int = _session.get_required_followers()
 	if total >= required:
 		# Win: next round, mask persists
@@ -195,7 +199,7 @@ func Show_Results() -> void:
 	if _session == null:
 		pnl_results.visible = true
 		return
-	var total: int = _session.get_followers_added()
+	var total: int = _session.get_followers_added_with_smitten(followers_smitten)
 	var required: int = _session.get_required_followers()
 	if lbl_required_num:
 		lbl_required_num.text = str(required)
@@ -203,12 +207,14 @@ func Show_Results() -> void:
 		lbl_total_num.text = str(total)
 	if lbl_base_mask_num:
 		lbl_base_mask_num.text = str(_session.get_base_followers())
+	if lbl_smitten_num:
+		lbl_smitten_num.text = str(followers_smitten)
 	if lbl_mask_multi_num:
 		lbl_mask_multi_num.text = _session.get_multiplier_display()
 	if lbl_gained:
 		lbl_gained.text = "Followers added: %d" % total
 	if lbl_flip_results:
-		var breakdown: Array = _session.get_followers_breakdown()
+		var breakdown: Array = _session.get_followers_breakdown_with_smitten(followers_smitten)
 		var lines := ""
 		for i in range(breakdown.size()):
 			if i > 0:
@@ -222,9 +228,10 @@ func Show_Results() -> void:
 func Build_Mask():
 	pass
 	
-func on_follower_clicked():
-	print("follower clicked")
-	
+func on_follower_clicked(follower_node):
+	follower_node.queue_free()
+	followers_smitten += 1
+
 func on_heretic_clicked(heretic):
 	heretic.queue_free()
 	print("heretic clicked")

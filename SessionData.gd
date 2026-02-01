@@ -27,6 +27,7 @@ const SLOT_ADJACENCY: Array = [
 
 var _cached_followers_total: int = -999
 var _cached_base_followers: int = -999
+var _cached_factor: float = -1.0
 var _cached_multiplier_display: String = ""
 var _cached_followers_breakdown: Array[String] = []
 
@@ -46,6 +47,7 @@ func get_required_followers() -> int:
 func clear_followers_cache() -> void:
 	_cached_followers_total = -999
 	_cached_base_followers = -999
+	_cached_factor = -1.0
 	_cached_multiplier_display = ""
 	_cached_followers_breakdown.clear()
 
@@ -74,10 +76,19 @@ func get_followers_added() -> int:
 	_log_results_footer()
 	_cached_followers_total = result
 	_cached_base_followers = total_raw
+	_cached_factor = factor
 	_cached_multiplier_display = _multiplier_display(factor)
 	if factor != 1.0:
 		_cached_followers_breakdown.append("%d x %s → %d" % [total_raw, _cached_multiplier_display, result])
 	return result
+
+## Like get_followers_added() but subtracts smitten (followers clicked by player) from base before applying multiplier.
+func get_followers_added_with_smitten(smitten: int) -> int:
+	if smitten <= 0:
+		return get_followers_added()
+	get_followers_added()  # ensure cache filled
+	var effective_base: int = max(0, _cached_base_followers - smitten)
+	return int(floor(effective_base * _cached_factor))
 
 func _log_results_header() -> void:
 	print("[SessionData] ========== RESULTS (follower calculation) ==========")
@@ -189,6 +200,17 @@ func get_followers_breakdown() -> Array[String]:
 	if _cached_followers_total == -999:
 		get_followers_added()
 	return _cached_followers_breakdown
+
+## Breakdown for results: uses (base - smitten) × multiplier → total so the calculation reflects smitten.
+func get_followers_breakdown_with_smitten(smitten: int) -> Array[String]:
+	if _cached_followers_total == -999:
+		get_followers_added()
+	if smitten <= 0:
+		return _cached_followers_breakdown
+	var effective_base: int = max(0, _cached_base_followers - smitten)
+	var result: int = get_followers_added_with_smitten(smitten)
+	var mult_str: String = _cached_multiplier_display if _cached_multiplier_display != "" else "1"
+	return ["%d x %s → %d" % [effective_base, mult_str, result]]
 
 func get_base_followers() -> int:
 	if _cached_followers_total == -999:
