@@ -171,6 +171,7 @@ func _on_bttn_start_pressed():
 		return
 	# Store built mask for day scene (totem display + results)
 	_session.built_mask_pieces.clear()
+	_session.clear_followers_cache()
 	var all_slots = _get_all_mask_slots()
 	for maskSlot in all_slots:
 		var piece = maskSlot.get_child(0) if maskSlot.get_child_count() > 0 else null

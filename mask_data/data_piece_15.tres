@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://b3tll4uhmovp4"]
+
+[ext_resource type="Texture2D" uid="uid://xk4ea2tkqbqt" path="res://art/masks/mask2-pieces/mask2-bottomRight.png" id="1_kx5l6"]
+[ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="2_pdg3w"]
+
+[resource]
+script = ExtResource("2_pdg3w")
+piece = "Cursed Eye"
+followers = -5
+position = 63
+mask_piece_sprite = ExtResource("1_kx5l6")
+available_in_round = 1
+effect = "Add 5 followers"
+mask_type = 2
+metadata/_custom_type_script = "uid://dsiteoo0w876x"

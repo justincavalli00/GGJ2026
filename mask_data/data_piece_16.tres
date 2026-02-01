@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://n71bmivdar1f"]
+
+[ext_resource type="Texture2D" uid="uid://b3r3nmkdnmsj3" path="res://art/masks/mask1-pieces/mask1-middleLeft.png" id="1_c76d1"]
+[ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="2_l13il"]
+
+[resource]
+script = ExtResource("2_l13il")
+piece = "Coin Flippers"
+position = 12
+mask_piece_sprite = ExtResource("1_c76d1")
+available_in_round = 63
+effect = "Double or half your followers"
+mask_type = 2
+multiplier_random = [-2, 2]
+metadata/_custom_type_script = "uid://dsiteoo0w876x"

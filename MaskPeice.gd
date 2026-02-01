@@ -69,6 +69,8 @@ func _togglePanel(value):
 		tooltip_text += "\n" + "Followers: " + str(mask_piece_data.followers)
 	if mask_piece_data.offerings != 0:
 		tooltip_text += "\n" + "Offerings: " + str(mask_piece_data.offerings)
+	if mask_piece_data.effect != "":
+		tooltip_text += "\n" + mask_piece_data.effect
 	panel.get_child(0).text = tooltip_text
 	
 

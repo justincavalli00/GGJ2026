@@ -18,6 +18,9 @@ const FOLLOWER = preload("uid://dyhajxfwyll2q")
 @onready var lbl_required_num: Label = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer/Lbl_Required_Num
 @onready var lbl_total_num: Label = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer4/Lbl_Total_Num
 @onready var bttn_next: Button = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/Bttn_Next
+@onready var lbl_flip_results: Label = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5/Lbl_Flip_Results
+@onready var lbl_base_mask_num: Label = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer2/Lbl_Base_Mask_Num
+@onready var lbl_mask_multi_num: Label = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5/Lbl_Mask_Multi_Num
 var _session: Node = null  # SessionData autoload, set in _ready()
 var lbl_gained: Label = null  # optional; set in _ready() if node exists
 @onready var anim_goal: AnimationPlayer = $Canvas/Margin_Goal/VBox_Goal/Anim_Goal
@@ -142,8 +145,20 @@ func Show_Results() -> void:
 		lbl_required_num.text = str(required)
 	if lbl_total_num:
 		lbl_total_num.text = str(total)
+	if lbl_base_mask_num:
+		lbl_base_mask_num.text = str(_session.get_base_followers())
+	if lbl_mask_multi_num:
+		lbl_mask_multi_num.text = _session.get_multiplier_display()
 	if lbl_gained:
 		lbl_gained.text = "Followers added: %d" % total
+	if lbl_flip_results:
+		var breakdown: Array = _session.get_followers_breakdown()
+		var lines := ""
+		for i in range(breakdown.size()):
+			if i > 0:
+				lines += "\n"
+			lines += str(breakdown[i])
+		lbl_flip_results.text = lines
 	if bttn_next:
 		bttn_next.text = "Continue" if total >= required else "New Game"
 	pnl_results.visible = true
