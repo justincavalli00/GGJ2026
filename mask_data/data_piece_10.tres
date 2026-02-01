@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://briv60syp87qq"]
 
-[ext_resource type="Texture2D" uid="uid://vdupchrm7pt3" path="res://art/masks/mask2-pieces/mask2-middleRight.png" id="1_8kodi"]
+[ext_resource type="Texture2D" uid="uid://b8qdh4up3de57" path="res://art/masks/NewMask2/4.png" id="1_8kodi"]
 [ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="2_s8bwf"]
 
 [resource]
