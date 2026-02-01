@@ -52,12 +52,14 @@ custom_minimum_size = Vector2(300, 450)
 layout_mode = 0
 offset_right = 304.0
 offset_bottom = 450.0
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="VBox_Left" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=105798737]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Left_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=1508198766]
@@ -89,6 +91,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Right_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=330070472]
