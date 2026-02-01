@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://b1flr7ec86j37"]
+
+[ext_resource type="Texture2D" uid="uid://dwls1npjs8fsq" path="res://art/masks/mask2-pieces/mask2-topRight.png" id="1_v10xd"]
+[ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="2_8pu4m"]
+
+[resource]
+script = ExtResource("2_8pu4m")
+piece = "Iron Head"
+followers = 5
+position = 63
+mask_piece_sprite = ExtResource("1_v10xd")
+effect = "Add 5 followers"
+mask_type = 2
+metadata/_custom_type_script = "uid://dsiteoo0w876x"
