@@ -11,6 +11,9 @@ extends Node2D
 
 @export var heretic_count : int = 10
 
+## Sum of followers from all mask pieces (base total, before round/synergy multipliers). Set from SessionData in _ready().
+var current_followers: int = 0
+
 const FOLLOWER = preload("uid://dyhajxfwyll2q")
 
 @onready var lbl_goal: Label = $Canvas/Margin_Goal/VBox_Goal/Lbl_Goal
@@ -34,6 +37,8 @@ func _ready() -> void:
 	_session = get_node_or_null("/root/SessionData")
 	if _session == null:
 		push_error("day: SessionData autoload not found")
+	else:
+		current_followers = _session.get_base_followers()
 	lbl_gained = get_node_or_null("Canvas/Margin_Goal/Pnl_Results/VBox_Results/Lbl_Gained")
 	bttn_next.pressed.connect(Pressed_Next)
 	pnl_results.visible = false

@@ -105,6 +105,23 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Music: On"
 
+[node name="Lbl_Seed" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=2000000001]
+layout_mode = 2
+text = "Seed: random"
+horizontal_alignment = 1
+
+[node name="HBox_Seed" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=2000000002]
+layout_mode = 2
+alignment = 1
+
+[node name="Bttn_RandomSeed" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBox_Seed" unique_id=2000000003]
+layout_mode = 2
+text = "Random reroll"
+
+[node name="Bttn_WinSeed" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBox_Seed" unique_id=2000000004]
+layout_mode = 2
+text = "Win seed"
+
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=632246764]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
