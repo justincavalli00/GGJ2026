@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://fm1gloh7h61b" path="res://day.gd" id="1_lqptk"]
 [ext_resource type="Texture2D" uid="uid://833lq6rkersh" path="res://art/placeholders/pawn.png" id="1_q5e70"]
+[ext_resource type="Texture2D" uid="uid://dxwmhw5cssa7" path="res://art/ground.png" id="2_8msho"]
 [ext_resource type="Texture2D" uid="uid://nctf6uke6b8x" path="res://art/placeholders/pentagon_outline.png" id="2_jak2h"]
+[ext_resource type="Texture2D" uid="uid://cweusm3jk2j0r" path="res://art/background.png" id="3_dvden"]
 [ext_resource type="Texture2D" uid="uid://f127hl21vt3v" path="res://art/placeholders/pentagon_question.png" id="3_wybox"]
+[ext_resource type="Texture2D" uid="uid://bq3rbgpuu3to4" path="res://art/decor1.png" id="4_58ipk"]
+[ext_resource type="Texture2D" uid="uid://bc1p76ig0gvla" path="res://art/decor2.png" id="5_fe8xe"]
+[ext_resource type="Texture2D" uid="uid://b3kf560wgqeaw" path="res://art/houses.png" id="5_yh4v0"]
+[ext_resource type="Texture2D" uid="uid://b0084dhctr2ot" path="res://art/cloud 1 .png" id="6_asg04"]
+[ext_resource type="Texture2D" uid="uid://ct83e5gptqs6p" path="res://art/cloud 2.png" id="7_1p1ot"]
 
 [sub_resource type="Animation" id="Animation_lqptk"]
 length = 0.001
@@ -83,7 +90,6 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.5294118, 0.80784315, 0.92156863, 1)
 
 [node name="Grass" type="ColorRect" parent="Background" unique_id=1313414157]
 anchors_preset = 15
@@ -94,7 +100,42 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.07450981, 0.42745098, 0.08235294, 1)
+color = Color(0.74, 0.74, 0.74, 1)
+
+[node name="Cloud1" type="Sprite2D" parent="Background" unique_id=1230482268]
+position = Vector2(378, 288)
+scale = Vector2(0.28000066, 0.28000066)
+texture = ExtResource("6_asg04")
+
+[node name="Cloud2" type="Sprite2D" parent="Background" unique_id=941521833]
+position = Vector2(1512.0001, 274)
+scale = Vector2(0.40000063, 0.40000063)
+texture = ExtResource("7_1p1ot")
+
+[node name="Decor1" type="Sprite2D" parent="Background" unique_id=960912743]
+position = Vector2(1717, 576.00006)
+scale = Vector2(0.40000063, 0.40000063)
+texture = ExtResource("4_58ipk")
+
+[node name="Decor2" type="Sprite2D" parent="Background" unique_id=1548165386]
+position = Vector2(373.00003, 576.00006)
+scale = Vector2(0.40000063, 0.40000063)
+texture = ExtResource("5_fe8xe")
+
+[node name="Houses" type="Sprite2D" parent="Background" unique_id=168003343]
+position = Vector2(1910, 457.99997)
+scale = Vector2(0.1999994, 0.1999994)
+texture = ExtResource("5_yh4v0")
+
+[node name="Ground" type="Sprite2D" parent="Background" unique_id=840422672]
+position = Vector2(951.00006, 800)
+scale = Vector2(-1.8305382, 0.40178698)
+texture = ExtResource("2_8msho")
+
+[node name="Background" type="Sprite2D" parent="Background" unique_id=1858068879]
+position = Vector2(993.00006, 471.00003)
+scale = Vector2(1.8399999, 0.28000033)
+texture = ExtResource("3_dvden")
 
 [node name="Totem" type="Node2D" parent="." unique_id=322201034]
 position = Vector2(961, 500)
