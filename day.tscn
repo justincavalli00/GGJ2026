@@ -77,6 +77,7 @@ _data = {
 
 [node name="Day" type="Node2D" unique_id=311523632]
 script = ExtResource("1_lqptk")
+time_left = 12.0
 follower_count = 10
 move_duration = 2.0
 
@@ -173,10 +174,10 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(-2336, 0)
 
 [node name="Pos_2" type="Marker2D" parent="Followers/Spawn" unique_id=555016011]
-position = Vector2(-1120, 0)
+position = Vector2(-1392, 0)
 
 [node name="Pos_3" type="Marker2D" parent="Followers/Spawn" unique_id=1618933220]
-position = Vector2(48, 0)
+position = Vector2(320, 0)
 
 [node name="Pos_4" type="Marker2D" parent="Followers/Spawn" unique_id=779553453]
 position = Vector2(1120, 0)
@@ -184,17 +185,54 @@ position = Vector2(1120, 0)
 [node name="Pos_5" type="Marker2D" parent="Followers/Spawn" unique_id=615690373]
 position = Vector2(2048, 0)
 
+[node name="Pos_6" type="Marker2D" parent="Followers/Spawn" unique_id=218332977]
+position = Vector2(1726, 0)
+
+[node name="Pos_7" type="Marker2D" parent="Followers/Spawn" unique_id=1567133488]
+position = Vector2(-754, 0)
+
 [node name="Group" type="Node2D" parent="Followers" unique_id=771897524]
-position = Vector2(0, 96)
+position = Vector2(0, 136)
 scale = Vector2(0.5, 0.5)
 
 [node name="Pos_1" type="Marker2D" parent="Followers/Group" unique_id=640055930]
 position = Vector2(-480, -96)
 
 [node name="Pos_2" type="Marker2D" parent="Followers/Group" unique_id=1467570760]
+position = Vector2(0, 32)
 
 [node name="Pos_3" type="Marker2D" parent="Followers/Group" unique_id=1284349725]
 position = Vector2(528, -96)
+
+[node name="Pos_4" type="Marker2D" parent="Followers/Group" unique_id=1126157301]
+position = Vector2(976, -144)
+
+[node name="Pos_5" type="Marker2D" parent="Followers/Group" unique_id=927082498]
+position = Vector2(768, 160)
+
+[node name="Pos_6" type="Marker2D" parent="Followers/Group" unique_id=1678920405]
+position = Vector2(384, 384)
+
+[node name="Pos_7" type="Marker2D" parent="Followers/Group" unique_id=460577638]
+position = Vector2(-128, 272)
+
+[node name="Pos_8" type="Marker2D" parent="Followers/Group" unique_id=1737145542]
+position = Vector2(-656, 352)
+
+[node name="Pos_9" type="Marker2D" parent="Followers/Group" unique_id=617773350]
+position = Vector2(-1168, 224)
+
+[node name="Pos_10" type="Marker2D" parent="Followers/Group" unique_id=601225904]
+position = Vector2(-1632, 16)
+
+[node name="Pos_11" type="Marker2D" parent="Followers/Group" unique_id=639491832]
+position = Vector2(-1040, -128)
+
+[node name="Pos_12" type="Marker2D" parent="Followers/Group" unique_id=2063206595]
+position = Vector2(-1472, 400)
+
+[node name="Pos_13" type="Marker2D" parent="Followers/Group" unique_id=904805619]
+position = Vector2(1304, 368)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=24029318]
 position = Vector2(960, 540)

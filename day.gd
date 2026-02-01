@@ -1,7 +1,7 @@
 extends Node2D
 
 @export_category("Day Properties")
-@export var time_left:float = 12
+@export var time_left: float = 4.0
 @onready var timer := Timer.new()
 
 @export_category("Follower Properties")
@@ -38,6 +38,9 @@ var lbl_smitten_num: Label = null  # optional; set in _ready() if node exists
 @onready var totem_face: Node2D = $Totem/Face
 
 var _last_printed_second: int = -1
+var _loiter_markers: Array[Marker2D] = []
+var _loiter_timer: Timer = null
+const LOITER_INTERVAL: float = 2.5
 
 
 func _ready() -> void:
@@ -51,7 +54,7 @@ func _ready() -> void:
 	bttn_next.pressed.connect(Pressed_Next)
 	pnl_results.visible = false
 	_build_totem_face()
-	# Sum time_in_day from all built mask pieces into the day timer
+	# Sum time_in_day from all built mask pieces; day duration = time_left (property) + time_from_mask
 	var time_from_mask: float = 0.0
 	var heretics_from_mask: int = 0
 	if _session:
@@ -59,12 +62,14 @@ func _ready() -> void:
 			if data is Mask_Piece_Data:
 				time_from_mask += data.time_in_day
 				heretics_from_mask += data.heretics
-	timer.wait_time = time_left + time_from_mask
+	var total_duration: float = time_left + time_from_mask
+	timer.wait_time = total_duration
 	current_heretics = heretic_count + heretics_from_mask
 	timer.one_shot = true
 	timer.timeout.connect(Show_Results)
 	add_child(timer)
 	timer.start()
+	lbl_time_left.text = str(int(round(total_duration)))
 	Spawn_Followers()
 	pass
 
@@ -99,75 +104,65 @@ func _build_totem_face() -> void:
 
 
 func Spawn_Followers() -> void:
-	# Get all spawn and group markers
+	# Get all spawn and group (loiter) markers — use Pos_1, Pos_2, ... under Group for wandering
 	var spawn_markers = spawn.get_children().filter(func(child): return child is Marker2D)
 	var group_markers = group.get_children().filter(func(child): return child is Marker2D)
-	
+	_loiter_markers.clear()
+	for m in group_markers:
+		_loiter_markers.append(m as Marker2D)
+
 	# Safety check
-	if spawn_markers.is_empty() or group_markers.is_empty():
+	if spawn_markers.is_empty() or _loiter_markers.is_empty():
 		push_error("Missing markers!")
 		return
-		
-	# Spawn each follower
+
+	# Start loiter timer so followers periodically get new random targets and wander
+	if _loiter_timer == null:
+		_loiter_timer = Timer.new()
+		_loiter_timer.wait_time = LOITER_INTERVAL
+		_loiter_timer.timeout.connect(_on_loiter_tick)
+		add_child(_loiter_timer)
+	_loiter_timer.start()
+
+	# Spawn each follower: tween from spawn to a random loiter spot, then wander via loiter timer
 	for i in range(current_followers):
-		# Pick random spawn position
 		var random_spawn = spawn_markers.pick_random() as Marker2D
-		
-		# Pick random group destination
-		var random_group = group_markers.pick_random() as Marker2D
-		
-		# Instantiate follower
+		var random_loiter = _loiter_markers.pick_random()
 		var follower = FOLLOWER.instantiate()
 		add_child(follower)
-		follower.add_to_group("followers")  # Important for flocking!
-
-		# Add click signal handler for follower (pass node so we can remove it when smitten)
+		follower.add_to_group("followers")
 		follower.clicked.connect(on_follower_clicked.bind(follower))
-
-		# Set initial position
 		follower.global_position = random_spawn.global_position
-		
-		# Enable flocking during movement
-		follower.Set_Target(random_group.global_position)
-
-		
-		# Tween to destination
+		follower.Set_Target(random_loiter.global_position)
 		var tween = create_tween()
-		tween.tween_property(follower, "global_position", random_group.global_position, move_duration)
+		tween.tween_property(follower, "global_position", random_loiter.global_position, move_duration)
 		tween.set_ease(Tween.EASE_IN_OUT)
 		tween.set_trans(Tween.TRANS_SINE)
-	
-	# Spawn each heretic
+
+	# Spawn each heretic: same — tween from spawn to random loiter spot, then wander
 	for x in range(current_heretics):
-		# Pick random spawn position
 		var random_spawn = spawn_markers.pick_random() as Marker2D
-		
-		# Pick random group destination
-		var random_group = group_markers.pick_random() as Marker2D
-		
-		# Instantiate heretic
+		var random_loiter = _loiter_markers.pick_random()
 		var heretic = FOLLOWER.instantiate()
-		# set to is heretic
 		heretic.IsHeretic = true
 		heretic.modulate = Color(1, 1, 1, .7)
 		add_child(heretic)
-		heretic.add_to_group("followers")  # Important for flocking!
-
-		# Add click signal handler for follower
+		heretic.add_to_group("followers")
 		heretic.clicked.connect(on_heretic_clicked.bind(heretic))
-
-		# Set initial position
 		heretic.global_position = random_spawn.global_position
-		
-		# Enable flocking during movement
-		heretic.Set_Target(random_group.global_position)
-
-		
-		# Tween to destination
+		heretic.Set_Target(random_loiter.global_position)
 		var tween = create_tween()
-		tween.tween_property(heretic, "global_position", random_group.global_position, move_duration)
+		tween.tween_property(heretic, "global_position", random_loiter.global_position, move_duration)
 		tween.set_ease(Tween.EASE_IN_OUT)
 		tween.set_trans(Tween.TRANS_SINE)
+
+
+func _on_loiter_tick() -> void:
+	if _loiter_markers.is_empty():
+		return
+	for node in get_tree().get_nodes_in_group("followers"):
+		if is_instance_valid(node) and node.has_method("Set_Target"):
+			node.Set_Target(_loiter_markers.pick_random().global_position)
 	
 func _process(_delta: float) -> void:
 	var sec_left: int = int(round(timer.time_left))
@@ -196,6 +191,8 @@ func Pressed_Next() -> void:
 		get_tree().change_scene_to_file("res://mask_builder.tscn")
 
 func Show_Results() -> void:
+	if _loiter_timer and _loiter_timer.time_left > 0:
+		_loiter_timer.stop()
 	if _session == null:
 		pnl_results.visible = true
 		return
