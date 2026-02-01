@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://eegtmd75v5n5"]
 
 [ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_piece_data.gd" id="1_mxbap"]
+[ext_resource type="Texture2D" uid="uid://bu16ejltvi1fg" path="res://art/masks/mask1.png" id="2_1lr2w"]
 
 [resource]
 script = ExtResource("1_mxbap")
@@ -10,4 +11,5 @@ position = 49
 time_in_day = 3.0
 heretics = -1
 offerings = 1
+texture = ExtResource("2_1lr2w")
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

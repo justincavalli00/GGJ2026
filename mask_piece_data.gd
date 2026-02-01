@@ -7,5 +7,7 @@ class_name Mask_Piece_Data extends Resource
 @export var time_in_day : float
 @export var heretics : int
 @export var offerings : int
+@export var mask_piece_sprite: Texture2D
+
 #TODO: ADD TYPE
 #TODO ACTIVE EFFECTS
