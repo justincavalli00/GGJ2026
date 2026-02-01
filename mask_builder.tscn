@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ddqkx0ubmfnrw" path="res://art/placeholders/bg-topRight.png" id="6_ofsgg"]
 [ext_resource type="Texture2D" uid="uid://duj7h2b6mf6je" path="res://art/placeholders/bg-middleRight.png" id="7_e6uco"]
 [ext_resource type="Texture2D" uid="uid://cpjhiuml47k40" path="res://art/placeholders/bg-bottomRight.png" id="8_6q0x0"]
-[ext_resource type="Texture2D" uid="uid://cw7n2rrvdc4qm" path="res://art/placeholders/character.png" id="9_vvqym"]
+[ext_resource type="PackedScene" uid="uid://dyhajxfwyll2q" path="res://followers/follower.tscn" id="9_e725m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvqym"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -125,68 +125,36 @@ scale = Vector2(0.5, 0.5)
 [node name="Left" type="Node2D" parent="Panel_Mask/Followers" unique_id=2090164170]
 position = Vector2(-300, 250)
 
-[node name="Follower_1" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=1025138276]
-self_modulate = Color(0, 0, 0, 1)
-texture = ExtResource("9_vvqym")
+[node name="Follower_1" parent="Panel_Mask/Followers/Left" unique_id=1431547832 instance=ExtResource("9_e725m")]
+script = null
 
-[node name="Follower_2" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=1957329650]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-74, 48)
-texture = ExtResource("9_vvqym")
+[node name="Follower_2" parent="Panel_Mask/Followers/Left" unique_id=2072723581 instance=ExtResource("9_e725m")]
+position = Vector2(96, 0)
+script = null
 
-[node name="Follower_3" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=2129300135]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(78, 48)
-texture = ExtResource("9_vvqym")
-
-[node name="Follower_4" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=861786226]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(30, 120)
-texture = ExtResource("9_vvqym")
-
-[node name="Follower_5" type="Sprite2D" parent="Panel_Mask/Followers/Left" unique_id=138858422]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-150.66667, 132.66667)
-texture = ExtResource("9_vvqym")
+[node name="Follower_3" parent="Panel_Mask/Followers/Left" unique_id=490209972 instance=ExtResource("9_e725m")]
+position = Vector2(48, -112)
+script = null
 
 [node name="Center" type="Node2D" parent="Panel_Mask/Followers" unique_id=1533736870]
 position = Vector2(0, 350)
 
-[node name="Follower_1" type="Sprite2D" parent="Panel_Mask/Followers/Center" unique_id=1441723136]
-self_modulate = Color(0, 0, 0, 1)
-texture = ExtResource("9_vvqym")
+[node name="Follower_1" parent="Panel_Mask/Followers/Center" unique_id=1677563295 instance=ExtResource("9_e725m")]
+script = null
 
-[node name="Follower_2" type="Sprite2D" parent="Panel_Mask/Followers/Center" unique_id=1026512573]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-74, 48)
-texture = ExtResource("9_vvqym")
-
-[node name="Follower_3" type="Sprite2D" parent="Panel_Mask/Followers/Center" unique_id=933563218]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(78, 48)
-texture = ExtResource("9_vvqym")
+[node name="Follower_2" parent="Panel_Mask/Followers/Center" unique_id=689644091 instance=ExtResource("9_e725m")]
+position = Vector2(-48, -80)
+script = null
 
 [node name="Right" type="Node2D" parent="Panel_Mask/Followers" unique_id=1534622719]
 position = Vector2(300, 250)
 
-[node name="Follower_1" type="Sprite2D" parent="Panel_Mask/Followers/Right" unique_id=1846840121]
-self_modulate = Color(0, 0, 0, 1)
-texture = ExtResource("9_vvqym")
+[node name="Follower_1" parent="Panel_Mask/Followers/Right" unique_id=1464533493 instance=ExtResource("9_e725m")]
+script = null
 
-[node name="Follower_2" type="Sprite2D" parent="Panel_Mask/Followers/Right" unique_id=2067997112]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(-80, 48)
-texture = ExtResource("9_vvqym")
-
-[node name="Follower_3" type="Sprite2D" parent="Panel_Mask/Followers/Right" unique_id=1459612663]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(80, 56)
-texture = ExtResource("9_vvqym")
-
-[node name="Follower_4" type="Sprite2D" parent="Panel_Mask/Followers/Right" unique_id=1821312534]
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(166.66667, 102)
-texture = ExtResource("9_vvqym")
+[node name="Follower_2" parent="Panel_Mask/Followers/Right" unique_id=607644858 instance=ExtResource("9_e725m")]
+position = Vector2(-80, 64)
+script = null
 
 [node name="Panel_Offerings" type="Panel" parent="." unique_id=439365641]
 layout_mode = 1

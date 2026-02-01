@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dyhajxfwyll2q"]
 
 [ext_resource type="Script" uid="uid://dtepq5hx6toqa" path="res://followers/follower.gd" id="1_arita"]
-[ext_resource type="Texture2D" uid="uid://cr587mfjtnmt8" path="res://art/newHuman/head.png" id="2_arita"]
-[ext_resource type="Texture2D" uid="uid://b8ee8qx2n8o4e" path="res://art/newHuman/body.png" id="3_erk2p"]
-[ext_resource type="Texture2D" uid="uid://bq2gvjjles3iw" path="res://art/newHuman/leftarm.png" id="4_pnuqx"]
-[ext_resource type="Texture2D" uid="uid://cqmix7dcqsgg5" path="res://art/newHuman/rightarm.png" id="5_438re"]
+[ext_resource type="Texture2D" uid="uid://bt4k50sfgl7d0" path="res://art/newHuman/head.png" id="2_arita"]
+[ext_resource type="Texture2D" uid="uid://dagqut53mr71n" path="res://art/newHuman/body.png" id="3_erk2p"]
+[ext_resource type="Texture2D" uid="uid://6wtfr7o287yc" path="res://art/newHuman/leftarm.png" id="4_pnuqx"]
+[ext_resource type="Texture2D" uid="uid://dq6xr4t5oads1" path="res://art/newHuman/rightarm.png" id="5_438re"]
 
 [sub_resource type="Animation" id="Animation_3mtco"]
 length = 0.001
