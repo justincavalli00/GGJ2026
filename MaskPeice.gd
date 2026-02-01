@@ -19,6 +19,20 @@ func _ready():
 	_highlight = get_node_or_null("Highlight")
 	if _highlight:
 		_highlight.visible = false
+	var icon = get_node_or_null("Icon")
+	if icon is TextureRect:
+		# Fit texture inside container regardless of texture size (no overflow from larger art)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_apply_texture_from_data()
+
+
+func _apply_texture_from_data() -> void:
+	if mask_piece_data == null:
+		return
+	var icon = get_node_or_null("Icon")
+	if icon is TextureRect and mask_piece_data.mask_piece_sprite != null:
+		icon.texture = mask_piece_data.mask_piece_sprite
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
