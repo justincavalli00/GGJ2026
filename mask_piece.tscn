@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://cal0kopt7ner4"]
+
+[ext_resource type="Texture2D" uid="uid://cbhje05c3i8q4" path="res://icon.svg" id="1_kl2rv"]
+[ext_resource type="Script" path="res://MaskPeice.gd" id="2_15bae"]
+
+[node name="MaskPiece" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_15bae")
+followers = 5
+
+[node name="Icon" type="TextureRect" parent="."]
+modulate = Color(0, 1, 0.270588, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kl2rv")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -50.0
+offset_top = -100.0
+offset_right = 50.0
+offset_bottom = -60.0
+
+[node name="Name" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Name"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
