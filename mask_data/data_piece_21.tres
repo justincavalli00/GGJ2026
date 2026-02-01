@@ -1,9 +1,14 @@
-[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://decefl02ky1fp"]
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://c4df7csqlej2c"]
 
 [ext_resource type="Texture2D" uid="uid://jrvqofhcrci8" path="res://art/masks/NewMask4/3.png" id="1_ew4y1"]
 [ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="1_s1iv4"]
 
 [resource]
 script = ExtResource("1_s1iv4")
+piece = "Final Eye"
+followers = -15
 mask_piece_sprite = ExtResource("1_ew4y1")
+available_in_round = 56
+effect = "Remove 15 Followers"
+mask_type = 4
 metadata/_custom_type_script = "uid://dsiteoo0w876x"
