@@ -9,6 +9,7 @@ extends Node2D
 @export var follower_req:int=0
 @export var move_duration : float
 
+@export var heretic_count : int = 10
 
 const FOLLOWER = preload("uid://dyhajxfwyll2q")
 
@@ -98,6 +99,9 @@ func Spawn_Followers() -> void:
 		add_child(follower)
 		follower.add_to_group("followers")  # Important for flocking!
 
+		# Add click signal handler for follower
+		follower.clicked.connect(on_follower_clicked)
+
 		# Set initial position
 		follower.global_position = random_spawn.global_position
 		
@@ -110,9 +114,39 @@ func Spawn_Followers() -> void:
 		tween.tween_property(follower, "global_position", random_group.global_position, move_duration)
 		tween.set_ease(Tween.EASE_IN_OUT)
 		tween.set_trans(Tween.TRANS_SINE)
+	
+	# Spawn each heretic
+	for x in range(heretic_count):
+		# Pick random spawn position
+		var random_spawn = spawn_markers.pick_random() as Marker2D
+		
+		# Pick random group destination
+		var random_group = group_markers.pick_random() as Marker2D
+		
+		# Instantiate heretic
+		var heretic = FOLLOWER.instantiate()
+		# set to is heretic
+		heretic.IsHeretic = true
+		heretic.modulate = Color(1, 1, 1, .5)
+		add_child(heretic)
+		heretic.add_to_group("followers")  # Important for flocking!
 
+		# Add click signal handler for follower
+		heretic.clicked.connect(on_heretic_clicked)
 
+		# Set initial position
+		heretic.global_position = random_spawn.global_position
+		
+		# Enable flocking during movement
+		heretic.Set_Target(random_group.global_position)
 
+		
+		# Tween to destination
+		var tween = create_tween()
+		tween.tween_property(heretic, "global_position", random_group.global_position, move_duration)
+		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.set_trans(Tween.TRANS_SINE)
+	
 func _process(delta: float) -> void:
 	lbl_time_left.text = str(round(int(timer.time_left)))
 
@@ -166,3 +200,8 @@ func Show_Results() -> void:
 func Build_Mask():
 	pass
 	
+func on_follower_clicked():
+	print("follower clicked")
+	
+func on_heretic_clicked():
+	print("heretic clicked")

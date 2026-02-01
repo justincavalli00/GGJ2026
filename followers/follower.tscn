@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dagqut53mr71n" path="res://art/newHuman/body.png" id="3_erk2p"]
 [ext_resource type="Texture2D" uid="uid://6wtfr7o287yc" path="res://art/newHuman/leftarm.png" id="4_pnuqx"]
 [ext_resource type="Texture2D" uid="uid://dq6xr4t5oads1" path="res://art/newHuman/rightarm.png" id="5_438re"]
+[ext_resource type="Script" uid="uid://ctri8skl8k8uf" path="res://followers/ClickFollower.gd" id="6_erk2p"]
 
 [sub_resource type="Animation" id="Animation_3mtco"]
 length = 0.001
@@ -134,6 +135,10 @@ _data = {
 &"anim_follower_walk": SubResource("Animation_arita")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arita"]
+radius = 17.0
+height = 106.0
+
 [node name="Follower" type="Node2D" unique_id=1431547832]
 script = ExtResource("1_arita")
 
@@ -165,3 +170,10 @@ texture = ExtResource("5_438re")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1998688472]
 libraries/ = SubResource("AnimationLibrary_erk2p")
 autoplay = &"anim_follower_idle"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1870270518]
+script = ExtResource("6_erk2p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=4308045]
+position = Vector2(0, 42)
+shape = SubResource("CapsuleShape2D_arita")

@@ -1,8 +1,17 @@
 extends Node2D
 
+@export var IsHeretic : bool = false
+
 var target_position: Vector2
 var personal_space: float = 250.0  # Minimum distance from others
 var move_speed : float = 20.0
+
+signal clicked(follower)
+
+@onready var click_area: Area2D = $Area2D
+
+func _ready():
+	click_area.clicked.connect(_on_click_area_clicked)
 
 func _process(delta: float) -> void:
 	# Move toward target
@@ -29,3 +38,7 @@ func _process(delta: float) -> void:
 
 func Set_Target(pos: Vector2):
 	target_position = pos
+	
+
+func _on_click_area_clicked():
+	clicked.emit()
