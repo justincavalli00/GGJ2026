@@ -55,9 +55,9 @@ alignment = 1
 [node name="Bttn_Start" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1020764368]
 layout_mode = 2
 size_flags_vertical = 3
-text = "START"
+text = "DAY "
 
 [node name="Bttn_Credits" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=136052096]
 layout_mode = 2
 size_flags_vertical = 3
-text = "CREDITS"
+text = "MASK BUILDER"
