@@ -69,7 +69,6 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="VBox_Left" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=105798737]
-visible = false
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3

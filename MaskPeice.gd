@@ -9,6 +9,8 @@ var dragging: bool = true
 var oldZIndex: int
 var id = randi_range(1, 1000)
 var _highlight: ColorRect = null
+var _close_timer: Timer = null
+const TOOLTIP_CLOSE_DELAY := 0.15
 
 signal selected(maskPiece)
 
@@ -25,6 +27,15 @@ func _ready():
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	_apply_texture_from_data()
+	# Deferred close timer so we can keep tooltip open when hovering over the panel
+	_close_timer = Timer.new()
+	_close_timer.one_shot = true
+	_close_timer.wait_time = TOOLTIP_CLOSE_DELAY
+	_close_timer.timeout.connect(_delayed_close_tooltip)
+	add_child(_close_timer)
+	var panel = get_node("Panel")
+	panel.mouse_entered.connect(_on_panel_mouse_entered)
+	panel.mouse_exited.connect(_on_panel_mouse_exited)
 
 
 func _apply_texture_from_data() -> void:
@@ -41,13 +52,24 @@ func _process(delta):
 
 
 func _on_mouse_entered():
+	_close_timer.stop()
 	oldZIndex = z_index
 	z_index = 21
 	scale.x = 1.2
 	scale.y = 1.2
 	_togglePanel(true)
-	
+
 func _on_mouse_exited():
+	_close_timer.start()
+
+func _on_panel_mouse_entered():
+	_close_timer.stop()
+	_togglePanel(true)
+
+func _on_panel_mouse_exited():
+	_close_timer.start()
+
+func _delayed_close_tooltip():
 	z_index = oldZIndex
 	scale.x = 1
 	scale.y = 1
@@ -83,4 +105,8 @@ func set_selected(is_selected: bool) -> void:
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		print("clicked mask")
+		selected.emit()
+
+func _on_panel_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		selected.emit()
