@@ -32,6 +32,8 @@ var lbl_gained: Label = null  # optional; set in _ready() if node exists
 @onready var group: Node2D = $Followers/Group
 @onready var totem_face: Node2D = $Totem/Face
 
+var _last_printed_second: int = -1
+
 
 func _ready() -> void:
 	_session = get_node_or_null("/root/SessionData")
@@ -43,7 +45,13 @@ func _ready() -> void:
 	bttn_next.pressed.connect(Pressed_Next)
 	pnl_results.visible = false
 	_build_totem_face()
-	timer.wait_time = time_left
+	# Sum time_in_day from all built mask pieces into the day timer
+	var time_from_mask: float = 0.0
+	if _session:
+		for data in _session.built_mask_pieces:
+			if data is Mask_Piece_Data:
+				time_from_mask += data.time_in_day
+	timer.wait_time = time_left + time_from_mask
 	timer.one_shot = true
 	timer.timeout.connect(Show_Results)
 	add_child(timer)
@@ -105,7 +113,7 @@ func Spawn_Followers() -> void:
 		follower.add_to_group("followers")  # Important for flocking!
 
 		# Add click signal handler for follower
-		follower.clicked.connect(on_follower_clicked)
+		follower.clicked.connect(on_follower_clicked.bind(follower))
 
 		# Set initial position
 		follower.global_position = random_spawn.global_position
@@ -152,8 +160,12 @@ func Spawn_Followers() -> void:
 		tween.set_ease(Tween.EASE_IN_OUT)
 		tween.set_trans(Tween.TRANS_SINE)
 	
-func _process(delta: float) -> void:
-	lbl_time_left.text = str(round(int(timer.time_left)))
+func _process(_delta: float) -> void:
+	var sec_left: int = int(round(timer.time_left))
+	lbl_time_left.text = str(sec_left)
+	if sec_left != _last_printed_second:
+		_last_printed_second = sec_left
+		print("Time left: ", sec_left)
 
 func Start_Day():
 	print("day started")
@@ -205,9 +217,14 @@ func Show_Results() -> void:
 func Build_Mask():
 	pass
 	
-func on_follower_clicked():
+func on_follower_clicked(follower):
+	follower.queue_free()
+	current_followers -= 1
 	print("follower clicked")
 	
 func on_heretic_clicked(heretic):
 	heretic.queue_free()
+	heretic_count -= 1
+	if (heretic_count <= 0):
+		Show_Results()
 	print("heretic clicked")

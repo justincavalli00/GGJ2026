@@ -7,8 +7,10 @@
 script = ExtResource("1_il8hh")
 piece = "Final Eye"
 followers = -15
+time_in_day = 3.0
+heretics = 3
 mask_piece_sprite = ExtResource("1_66wtr")
-available_in_round = 56
+available_in_round = 40
 effect = "Remove 15 Followers"
 mask_type = 4
 metadata/_custom_type_script = "uid://dsiteoo0w876x"
