@@ -13,6 +13,8 @@ extends Node2D
 
 ## Sum of followers from all mask pieces (base total, before round/synergy multipliers). Set from SessionData in _ready().
 var current_followers: int = 0
+## Base heretic_count + sum of heretics from all mask pieces. Set in _ready().
+var current_heretics: int = 0
 
 const FOLLOWER = preload("uid://dyhajxfwyll2q")
 
@@ -47,11 +49,14 @@ func _ready() -> void:
 	_build_totem_face()
 	# Sum time_in_day from all built mask pieces into the day timer
 	var time_from_mask: float = 0.0
+	var heretics_from_mask: int = 0
 	if _session:
 		for data in _session.built_mask_pieces:
 			if data is Mask_Piece_Data:
 				time_from_mask += data.time_in_day
+				heretics_from_mask += data.heretics
 	timer.wait_time = time_left + time_from_mask
+	current_heretics = heretic_count + heretics_from_mask
 	timer.one_shot = true
 	timer.timeout.connect(Show_Results)
 	add_child(timer)
@@ -129,7 +134,7 @@ func Spawn_Followers() -> void:
 		tween.set_trans(Tween.TRANS_SINE)
 	
 	# Spawn each heretic
-	for x in range(heretic_count):
+	for x in range(current_heretics):
 		# Pick random spawn position
 		var random_spawn = spawn_markers.pick_random() as Marker2D
 		
