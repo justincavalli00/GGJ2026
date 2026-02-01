@@ -169,6 +169,19 @@ func _on_slot_clicked(maskSlot):
 func _on_bttn_start_pressed():
 	if _session == null:
 		return
+	# Unused offerings turn people into heretics: count pieces still in offering area
+	var unused_count := 0
+	for offering in $Panel_Offerings/HBox_Offering.get_children():
+		if offering.get_child_count() > 0:
+			var piece = offering.get_child(0)
+			if piece.get("mask_piece_data") != null:
+				unused_count += 1
+				# For each unused piece, create a heretic (log for now)
+				var data: Mask_Piece_Data = piece.mask_piece_data
+				var piece_name: String = data.piece if data else "Unknown"
+				print("[GameManager] Unused piece '%s' -> created heretic (%d of %d)" % [piece_name, unused_count, unused_count])
+	if unused_count > 0:
+		print("[GameManager] Total heretics from unused offerings: %d" % unused_count)
 	# Store built mask for day scene (totem display + results)
 	_session.built_mask_pieces.clear()
 	_session.clear_followers_cache()
