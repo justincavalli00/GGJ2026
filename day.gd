@@ -1,16 +1,16 @@
 extends Node2D
 
-#TODO: Play start animation
-#TODO: Play the FIND THE HERETIC
-#TODO: Play 10 second timer
-#TODO: Show panel results after timer
-#TODO: go to mask builder
-
 @export_category("Day Properties")
 @export var time_left:float = 12
 @onready var timer := Timer.new()
-var required_followers:int=0
 
+@export_category("Follower Properties")
+@export var follower_count : int = 0
+@export var follower_req:int=0
+@export var move_duration : float
+
+
+const FOLLOWER = preload("uid://dyhajxfwyll2q")
 
 @onready var lbl_goal: Label = $Canvas/Margin_Goal/VBox_Goal/Lbl_Goal
 @onready var lbl_time_left: Label = $Canvas/Margin_Goal/VBox_Goal/Lbl_Time_Left
@@ -21,6 +21,10 @@ var required_followers:int=0
 @onready var lbl_total: Label = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/Lbl_Total
 @onready var bttn_next: Button = $Canvas/Margin_Goal/Pnl_Results/VBox_Results/Bttn_Next
 @onready var anim_goal: AnimationPlayer = $Canvas/Margin_Goal/VBox_Goal/Anim_Goal
+@onready var spawn: Node2D = $Followers/Spawn
+@onready var group: Node2D = $Followers/Group
+
+
 
 func _ready() -> void:
 	bttn_next.pressed.connect(Pressed_Next)
@@ -30,8 +34,47 @@ func _ready() -> void:
 	timer.timeout.connect(Show_Results)
 	add_child(timer)
 	timer.start()
+	Spawn_Followers()
 	
 	pass
+
+
+func Spawn_Followers() -> void:
+	# Get all spawn and group markers
+	var spawn_markers = spawn.get_children().filter(func(child): return child is Marker2D)
+	var group_markers = group.get_children().filter(func(child): return child is Marker2D)
+	
+	# Safety check
+	if spawn_markers.is_empty() or group_markers.is_empty():
+		push_error("Missing markers!")
+		return
+		
+	# Spawn each follower
+	for i in range(follower_count):
+		# Pick random spawn position
+		var random_spawn = spawn_markers.pick_random() as Marker2D
+		
+		# Pick random group destination
+		var random_group = group_markers.pick_random() as Marker2D
+		
+		# Instantiate follower
+		var follower = FOLLOWER.instantiate()
+		add_child(follower)
+		follower.add_to_group("followers")  # Important for flocking!
+
+		# Set initial position
+		follower.global_position = random_spawn.global_position
+		
+		# Enable flocking during movement
+		follower.Set_Target(random_group.global_position)
+
+		
+		# Tween to destination
+		var tween = create_tween()
+		tween.tween_property(follower, "global_position", random_group.global_position, move_duration)
+		tween.set_ease(Tween.EASE_IN_OUT)
+		tween.set_trans(Tween.TRANS_SINE)
+
 
 
 func _process(delta: float) -> void:
