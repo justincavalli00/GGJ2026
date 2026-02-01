@@ -15,8 +15,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="MaskAsDeity"
-run/main_scene="res://mask_builder.tscn"
+run/main_scene="uid://da8rngcl6g51p"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/bg_color=Color(0.51899546, 0.6031767, 0.7314017, 1)
 config/icon="res://icon.svg"
 <<<<<<<Updatedupstreamrun/main_scene="uid://da8rngcl6g51p"
 

@@ -69,7 +69,7 @@ layout_mode = 2
 [node name="Lbl_Title2" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=635976543]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Created for Global Game Jam 2026
-Jeb, Justin, Ashly, Ondra"
+text = "Created for Global Game Jam 2026 at Glitch City LA
+by Jeb, Justin, Ashly, Ondra"
 horizontal_alignment = 1
 vertical_alignment = 1
