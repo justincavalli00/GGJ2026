@@ -9,7 +9,7 @@ extends Node2D
 @export var follower_req:int=0
 @export var move_duration : float
 
-@export var heretic_count : int = 10
+@export var heretic_count : int = 1
 
 ## Sum of followers from all mask pieces (base total, before round/synergy multipliers). Set from SessionData in _ready().
 var current_followers: int = 0
@@ -92,7 +92,7 @@ func Spawn_Followers() -> void:
 		return
 		
 	# Spawn each follower
-	for i in range(follower_count):
+	for i in range(current_followers):
 		# Pick random spawn position
 		var random_spawn = spawn_markers.pick_random() as Marker2D
 		
@@ -132,12 +132,12 @@ func Spawn_Followers() -> void:
 		var heretic = FOLLOWER.instantiate()
 		# set to is heretic
 		heretic.IsHeretic = true
-		heretic.modulate = Color(1, 1, 1, .5)
+		heretic.modulate = Color(1, 1, 1, .7)
 		add_child(heretic)
 		heretic.add_to_group("followers")  # Important for flocking!
 
 		# Add click signal handler for follower
-		heretic.clicked.connect(on_heretic_clicked)
+		heretic.clicked.connect(on_heretic_clicked.bind(heretic))
 
 		# Set initial position
 		heretic.global_position = random_spawn.global_position
@@ -208,5 +208,6 @@ func Build_Mask():
 func on_follower_clicked():
 	print("follower clicked")
 	
-func on_heretic_clicked():
+func on_heretic_clicked(heretic):
+	heretic.queue_free()
 	print("heretic clicked")
