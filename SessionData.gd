@@ -2,6 +2,12 @@ extends Node
 ## Autoload: holds the mask built by the player and current round.
 ## Mask builder writes here when starting the day; day scene reads for totem display and results.
 
+## Fixed seed used for "Win seed" in the menu. Balance the game around this run. Value: 424242
+const WIN_SEED: int = 424242
+
+## Current seed choice from menu. 0 = random when starting. Set via menu (Random reroll / Win seed).
+var current_seed: int = 0
+
 var current_round: int = 1
 var built_mask_pieces: Array = []  # Array of Mask_Piece_Data (one per slot, null if empty)
 # Slot order matches mask builder: Left_Top, Left_Mid, Left_Bottom, Right_Top, Right_Mid, Right_Bottom
@@ -23,6 +29,15 @@ var _cached_followers_total: int = -999
 var _cached_base_followers: int = -999
 var _cached_multiplier_display: String = ""
 var _cached_followers_breakdown: Array[String] = []
+
+func _ready() -> void:
+	pass
+
+## Apply current_seed to the global RNG. Call when starting a run (e.g. from title menu). 0 = leave random.
+func apply_seed() -> void:
+	if current_seed != 0:
+		seed(current_seed)
+		print("[SessionData] Seed applied: %d" % current_seed)
 
 func get_required_followers() -> int:
 	var idx := clampi(current_round - 1, 0, REQUIRED_PER_ROUND.size() - 1)
