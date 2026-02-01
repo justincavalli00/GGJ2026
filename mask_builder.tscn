@@ -46,6 +46,7 @@ offset_right = 150.0
 offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 0.8400003)
 
 [node name="HBox_Mask" type="HBoxContainer" parent="Panel_Mask" unique_id=1519705883]
 custom_minimum_size = Vector2(300, 450)
