@@ -234,4 +234,7 @@ func on_follower_clicked(follower_node):
 
 func on_heretic_clicked(heretic):
 	heretic.queue_free()
+	current_heretics -= 1
+	if current_heretics <= 0:
+		Show_Results()
 	print("heretic clicked")

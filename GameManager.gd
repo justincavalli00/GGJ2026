@@ -179,7 +179,7 @@ func _on_bttn_start_pressed():
 		var piece = maskSlot.get_child(0) if maskSlot.get_child_count() > 0 else null
 		var data: Mask_Piece_Data = piece.mask_piece_data if piece != null and piece.get("mask_piece_data") != null else null
 		_session.built_mask_pieces.append(data)
-	get_tree().change_scene_to_file("res://day.tscn")
+	get_tree().change_scene_to_file("res://quote.tscn")
 
 func _UpdateEffects():
 	var all_slots = []
