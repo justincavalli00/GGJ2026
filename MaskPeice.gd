@@ -23,7 +23,7 @@ func _ready():
 	if icon is TextureRect:
 		# Fit texture inside container regardless of texture size (no overflow from larger art)
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	_apply_texture_from_data()
 
 

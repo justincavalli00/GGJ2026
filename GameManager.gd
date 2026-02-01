@@ -68,12 +68,58 @@ func _drawCards():
 		if maskPiece != null:
 			maskPiece.selected.connect(_on_maskPiece_selected.bind(maskPiece))
 		
+func _is_placed(piece: Control) -> bool:
+	if piece == null:
+		return false
+	var parent = piece.get_parent()
+	return parent != null and parent.get_parent() is VBoxContainer
+
+func _is_in_offering(piece: Control) -> bool:
+	if piece == null:
+		return false
+	var parent = piece.get_parent()
+	return parent != null and parent.get_parent() is HBoxContainer
+
 func _on_maskPiece_selected(maskPiece):
-	# Clear highlight on previously selected piece
+	# Clicking a different piece while one is selected
+	if selected_maskPiece and selected_maskPiece != maskPiece:
+		# Both placed on mask: swap their slots
+		if _is_placed(selected_maskPiece) and _is_placed(maskPiece):
+			var parent_a = selected_maskPiece.get_parent()
+			var parent_b = maskPiece.get_parent()
+			parent_a.remove_child(selected_maskPiece)
+			parent_b.remove_child(maskPiece)
+			parent_a.add_child(maskPiece)
+			parent_b.add_child(selected_maskPiece)
+			if selected_maskPiece.has_method("set_selected"):
+				selected_maskPiece.set_selected(false)
+			selected_maskPiece = null
+			_UpdateEffects()
+			return
+		# Selected from offering, clicked placed piece: replace (offering piece goes to mask, placed piece is removed)
+		if _is_in_offering(selected_maskPiece) and _is_placed(maskPiece):
+			var offering_slot = selected_maskPiece.get_parent()
+			var mask_slot = maskPiece.get_parent()
+			mask_slot.remove_child(maskPiece)
+			maskPiece.queue_free()
+			offering_slot.remove_child(selected_maskPiece)
+			mask_slot.add_child(selected_maskPiece)
+			if selected_maskPiece.has_method("set_selected"):
+				selected_maskPiece.set_selected(false)
+			selected_maskPiece = null
+			_UpdateEffects()
+			return
+		# Otherwise (e.g. selected placed, clicked offering): just select the clicked piece below
+	# Clicking the same piece again: deselect
+	if selected_maskPiece == maskPiece:
+		if selected_maskPiece.has_method("set_selected"):
+			selected_maskPiece.set_selected(false)
+		selected_maskPiece = null
+		return
+	# No selection or new selection: select the clicked piece
 	if selected_maskPiece and is_instance_valid(selected_maskPiece):
 		if selected_maskPiece.has_method("set_selected"):
 			selected_maskPiece.set_selected(false)
-	# Select the clicked piece (from offering or from a slot) for repositioning
 	selected_maskPiece = maskPiece
 	if maskPiece.has_method("set_selected"):
 		maskPiece.set_selected(true)
@@ -84,11 +130,11 @@ func _on_slot_clicked(maskSlot):
 		if selected_maskPiece.has_method("set_selected"):
 			selected_maskPiece.set_selected(false)
 		var old_parent = selected_maskPiece.get_parent()
-		# If target slot already has a piece, swap: move it to selected piece's old slot
+		# If target slot already has a piece: from offering = replace (old piece goes to offering); from mask = swap slots
 		if maskSlot.get_child_count() > 0:
 			var existing_piece = maskSlot.get_child(0)
 			maskSlot.remove_child(existing_piece)
-			old_parent.add_child(existing_piece)
+			old_parent.add_child(existing_piece)  # offering slot or mask slot
 		old_parent.remove_child(selected_maskPiece)
 		maskSlot.add_child(selected_maskPiece)
 		selected_maskPiece = null
