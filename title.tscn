@@ -38,7 +38,7 @@ alignment = 1
 [node name="Lbl_Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1156209523]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "GGJ26 - MASK AS DEITY"
+text = "ALL WILL FOLLOW"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -61,3 +61,15 @@ text = "DAY "
 layout_mode = 2
 size_flags_vertical = 3
 text = "MASK BUILDER"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=632246764]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Lbl_Title2" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=635976543]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Created for Global Game Jam 2026
+Jeb, Justin, Ashly, Ondra"
+horizontal_alignment = 1
+vertical_alignment = 1
