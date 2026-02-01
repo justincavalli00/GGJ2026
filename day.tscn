@@ -228,7 +228,7 @@ text = "FIND THE HERETIC!"
 horizontal_alignment = 1
 
 [node name="Lbl_Time_Left" type="Label" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=70012152]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "10"
@@ -239,6 +239,7 @@ libraries/ = SubResource("AnimationLibrary_kbc73")
 autoplay = &"anim_show_goal"
 
 [node name="Pnl_Results" type="Panel" parent="Canvas/Margin_Goal" unique_id=2107447449]
+visible = false
 layout_mode = 2
 
 [node name="VBox_Results" type="VBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results" unique_id=1451686035]

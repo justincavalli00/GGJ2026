@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://da8rngcl6g51p"]
 
 [ext_resource type="Script" uid="uid://ddnny6fy7nn4c" path="res://title.gd" id="1_y7k74"]
+[ext_resource type="Texture2D" uid="uid://dw07jn7d48efl" path="res://art/titleart/Title.png" id="2_mom7w"]
+[ext_resource type="Texture2D" uid="uid://bmbienbf8myp7" path="res://art/titleart/people.png" id="3_7lgly"]
+[ext_resource type="Texture2D" uid="uid://drk1qu5hoilfa" path="res://art/titleart/event.png" id="4_0824t"]
+[ext_resource type="Texture2D" uid="uid://cqq5ydfva2vfd" path="res://art/titleart/Person.png" id="5_nuqgq"]
 
 [node name="Title" type="Control" unique_id=384952872]
 layout_mode = 3
@@ -11,7 +15,32 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y7k74")
 
+[node name="Title" type="Sprite2D" parent="." unique_id=396059855]
+position = Vector2(963, 554)
+rotation = -1.5614291
+scale = Vector2(0.9999998, 1)
+texture = ExtResource("2_mom7w")
+
+[node name="Credits" type="Sprite2D" parent="." unique_id=1167701145]
+position = Vector2(1215.899, 75.23761)
+rotation = -1.5614291
+scale = Vector2(0.41181558, 0.41181567)
+texture = ExtResource("3_7lgly")
+
+[node name="Credits2" type="Sprite2D" parent="." unique_id=1288998191]
+position = Vector2(729.89905, 74.23761)
+rotation = -1.5614291
+scale = Vector2(0.41181558, 0.41181567)
+texture = ExtResource("4_0824t")
+
+[node name="Person" type="Sprite2D" parent="." unique_id=191289099]
+position = Vector2(1110, 972)
+rotation = -1.5707964
+scale = Vector2(0.70039564, 0.6850024)
+texture = ExtResource("5_nuqgq")
+
 [node name="Panel" type="Panel" parent="." unique_id=509926783]
+visible = false
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 0
 offset_right = 1920.0
@@ -24,10 +53,13 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -351.5
-offset_right = 351.5
+offset_left = 203.0
+offset_top = 570.0
+offset_right = 1283.0
+offset_bottom = 570.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2848, 0.46)
 theme_override_constants/margin_top = 200
 theme_override_constants/margin_bottom = 200
 
@@ -36,6 +68,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Lbl_Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1156209523]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "ALL WILL FOLLOW"
@@ -55,6 +88,8 @@ alignment = 1
 [node name="Bttn_Credits" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=136052096]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
 text = "START"
 
 [node name="Bttn_Start" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1020764368]
@@ -66,6 +101,8 @@ text = "DAY "
 [node name="Bttn_Music" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1020764369]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
 text = "Music: On"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=632246764]

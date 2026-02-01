@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddqkx0ubmfnrw"
-path="res://.godot/imported/bg-topRight.png-874d6aae58040119add58e6d6911fea3.ctex"
+uid="uid://drk1qu5hoilfa"
+path="res://.godot/imported/event.png-95e21f5bc7a7e7f4edb6970753b5b2ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/placeholders/bg-topRight.png"
-dest_files=["res://.godot/imported/bg-topRight.png-874d6aae58040119add58e6d6911fea3.ctex"]
+source_file="res://art/titleart/event.png"
+dest_files=["res://.godot/imported/event.png-95e21f5bc7a7e7f4edb6970753b5b2ba.ctex"]
 
 [params]
 

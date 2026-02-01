@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bmsg1knsalqct"]
 
 [ext_resource type="Script" uid="uid://l8vjstan61te" path="res://GameManager.gd" id="1_7cfo4"]
-[ext_resource type="Texture2D" uid="uid://cbhje05c3i8q4" path="res://icon.svg" id="1_ugguo"]
 [ext_resource type="Texture2D" uid="uid://cbq5l3jxn2ien" path="res://art/placeholders/bg-topLeft.png" id="2_lpdfi"]
 [ext_resource type="Script" uid="uid://rqld00bsjbh0" path="res://MaskSlot.gd" id="3_i4fcx"]
 [ext_resource type="Texture2D" uid="uid://dpeugnd4bkqb0" path="res://art/placeholders/bg-middleLeft.png" id="4_vvqym"]
@@ -10,6 +9,18 @@
 [ext_resource type="Texture2D" uid="uid://duj7h2b6mf6je" path="res://art/placeholders/bg-middleRight.png" id="7_e6uco"]
 [ext_resource type="Texture2D" uid="uid://cpjhiuml47k40" path="res://art/placeholders/bg-bottomRight.png" id="8_6q0x0"]
 [ext_resource type="PackedScene" uid="uid://dyhajxfwyll2q" path="res://followers/follower.tscn" id="9_e725m"]
+[ext_resource type="Texture2D" uid="uid://bvwqtoewvuqap" path="res://art/placeholders/dice_1.png" id="10_vvqym"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e725m"]
+bg_color = Color(0.81, 0.81, 0.81, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvqym"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -47,6 +58,7 @@ offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 0.8400003)
+theme_override_styles/panel = SubResource("StyleBoxFlat_e725m")
 
 [node name="HBox_Mask" type="HBoxContainer" parent="Panel_Mask" unique_id=1519705883]
 custom_minimum_size = Vector2(300, 450)
@@ -57,6 +69,7 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="VBox_Left" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=105798737]
+visible = false
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -179,21 +192,24 @@ offset_bottom = 200.0
 alignment = 1
 
 [node name="Offering_1" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=1621278620]
+modulate = Color(0.5019608, 0.5019608, 0.5019608, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("10_vvqym")
 
 [node name="Offering_2" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=1826784068]
+modulate = Color(0.5019608, 0.5019608, 0.5019608, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("10_vvqym")
 
 [node name="Offering_3" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=904662185]
+modulate = Color(0.5, 0.5, 0.5, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_ugguo")
+texture = ExtResource("10_vvqym")
 
 [node name="Panel_Effects" type="Panel" parent="." unique_id=2030293252]
 layout_mode = 1
