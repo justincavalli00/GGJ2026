@@ -7,8 +7,10 @@
 script = ExtResource("1_14u0t")
 piece = "Final Head"
 followers = 20
+time_in_day = 3.0
+heretics = 3
 mask_piece_sprite = ExtResource("1_kgvry")
-available_in_round = 56
+available_in_round = 40
 effect = "Add 20 Followers"
 mask_type = 4
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

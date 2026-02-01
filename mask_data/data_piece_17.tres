@@ -7,8 +7,10 @@
 script = ExtResource("2_shvec")
 piece = "Cursed Mouth"
 followers = -10
+time_in_day = 7.0
+heretics = 5
 mask_piece_sprite = ExtResource("1_6t4gp")
-available_in_round = 60
+available_in_round = 56
 effect = "Remove 10 Followers"
 mask_type = 3
 metadata/_custom_type_script = "uid://dsiteoo0w876x"
