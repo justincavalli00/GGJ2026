@@ -7,19 +7,22 @@ var MaskScene
 var selected_maskPiece: Control = null
 var _mask_piece_data_list: Array[Mask_Piece_Data] = []
 var current_round: int = 1
+var _session: Node = null  # SessionData autoload, set in _ready()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_session = get_node_or_null("/root/SessionData")
+	if _session == null:
+		push_error("GameManager: SessionData autoload not found")
+	else:
+		current_round = _session.current_round
 	MaskScene = preload("res://mask_piece.tscn")
 	_load_mask_piece_data()
 	_drawCards()
 
-	var all_slots = []
-	all_slots += $Panel_Mask/HBox_Mask/VBox_Left.get_children()
-	all_slots += $Panel_Mask/HBox_Mask/VBox_Right.get_children()
+	var all_slots = _get_all_mask_slots()
 	for maskSlot in all_slots:
 		maskSlot.clicked.connect(_on_slot_clicked.bind(maskSlot))
-		
 	_UpdateEffects()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,16 +60,39 @@ func generate_mask_piece() -> Control:
 	maskPiece.mask_piece_data = data
 	return maskPiece
 
+func _get_all_mask_slots() -> Array:
+	var all_slots: Array = []
+	all_slots.append_array($Panel_Mask/HBox_Mask/VBox_Left.get_children())
+	all_slots.append_array($Panel_Mask/HBox_Mask/VBox_Right.get_children())
+	return all_slots
+
 func _drawCards():
+	var all_slots := _get_all_mask_slots()
+	# Restore mask from previous round (persistent across rounds on win)
+	var built: Array = _session.built_mask_pieces if _session else []
+	for i in range(min(built.size(), all_slots.size())):
+		var data = built[i]
+		if data is Mask_Piece_Data:
+			var mask_piece = MaskScene.instantiate()
+			mask_piece.mask_piece_data = data
+			var slot = all_slots[i]
+			slot.add_child(mask_piece)
+	# Each round: 3 new offerings
 	for x in range(1, drawCount + 1):
-		var maskPiece = generate_mask_piece()
+		var mask_piece = generate_mask_piece()
 		var offering = get_node("Panel_Offerings/HBox_Offering/Offering_" + str(x))
-		offering.add_child(maskPiece)
-	
+		offering.add_child(mask_piece)
+	# Connect selected signal for all pieces (mask + offerings)
+	for slot in all_slots:
+		if slot.get_child_count() > 0:
+			var piece = slot.get_child(0)
+			if piece.has_signal("selected"):
+				piece.selected.connect(_on_maskPiece_selected.bind(piece))
 	for offering in $Panel_Offerings/HBox_Offering.get_children():
-		var maskPiece = offering.get_child(0)
-		if maskPiece != null:
-			maskPiece.selected.connect(_on_maskPiece_selected.bind(maskPiece))
+		if offering.get_child_count() > 0:
+			var piece = offering.get_child(0)
+			if piece.has_signal("selected"):
+				piece.selected.connect(_on_maskPiece_selected.bind(piece))
 		
 func _is_placed(piece: Control) -> bool:
 	if piece == null:
@@ -141,15 +167,15 @@ func _on_slot_clicked(maskSlot):
 		_UpdateEffects()
 
 func _on_bttn_start_pressed():
+	if _session == null:
+		return
 	# Store built mask for day scene (totem display + results)
-	SessionData.built_mask_pieces.clear()
-	var all_slots = []
-	all_slots += $Panel_Mask/HBox_Mask/VBox_Left.get_children()
-	all_slots += $Panel_Mask/HBox_Mask/VBox_Right.get_children()
+	_session.built_mask_pieces.clear()
+	var all_slots = _get_all_mask_slots()
 	for maskSlot in all_slots:
 		var piece = maskSlot.get_child(0) if maskSlot.get_child_count() > 0 else null
 		var data: Mask_Piece_Data = piece.mask_piece_data if piece != null and piece.get("mask_piece_data") != null else null
-		SessionData.built_mask_pieces.append(data)
+		_session.built_mask_pieces.append(data)
 	get_tree().change_scene_to_file("res://day.tscn")
 
 func _UpdateEffects():
