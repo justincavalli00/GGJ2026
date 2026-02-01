@@ -102,11 +102,12 @@ func _UpdateEffects():
 	
 	for maskSlot in all_slots:
 		# A mask piece is in the slot
-		if maskSlot.get_child(0) != null:
-			followers += maskSlot.get_child(0).mask_piece_data.followers
-			timeInDay += maskSlot.get_child(0).mask_piece_data.time_in_day
-			heretics += maskSlot.get_child(0).mask_piece_data.heretics
-			offerings += maskSlot.get_child(0).mask_piece_data.offerings
+		var piece = maskSlot.get_child(0)
+		if piece != null and piece.mask_piece_data != null:
+			followers += piece.mask_piece_data.followers
+			timeInDay += piece.mask_piece_data.time_in_day
+			heretics += piece.mask_piece_data.heretics
+			offerings += piece.mask_piece_data.offerings
 	
 	$Panel_Effects/VBox_Effects/Lbl_Effect_1.text = "Followers: " + str(followers)
 	$Panel_Effects/VBox_Effects/Lbl_Effect_2.text = "Time In Day: " + str(timeInDay)

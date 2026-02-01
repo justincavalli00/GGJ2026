@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://dxqqp3v23k8xq"]
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://c2clvxyfq8mib"]
 
 [ext_resource type="Texture2D" uid="uid://bma87ub4yme7d" path="res://art/masks/mask1-pieces/mask1-bottomLeft.png" id="1_4m7mp"]
 [ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="2_fgesq"]
@@ -9,6 +9,7 @@ piece = "Wooden Mouth"
 followers = 1
 position = 63
 mask_piece_sprite = ExtResource("1_4m7mp")
+available_in_round = 1
 effect = "Add 1 follower"
 mask_type = 1
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

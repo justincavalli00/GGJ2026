@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://b56fyvmlkauql"]
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://cv7kn780tieep"]
 
 [ext_resource type="Texture2D" uid="uid://xk4ea2tkqbqt" path="res://art/masks/mask2-pieces/mask2-bottomRight.png" id="1_jpdau"]
 [ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="2_3g80w"]
@@ -9,6 +9,7 @@ piece = "Iron Mouth"
 followers = 5
 position = 63
 mask_piece_sprite = ExtResource("1_jpdau")
+available_in_round = 1
 effect = "Add 5 followers"
 mask_type = 2
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

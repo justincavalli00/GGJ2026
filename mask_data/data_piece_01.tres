@@ -1,13 +1,15 @@
 [gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://eegtmd75v5n5"]
 
-[ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_piece_data.gd" id="1_mxbap"]
-[ext_resource type="Texture2D" uid="uid://bu16ejltvi1fg" path="res://art/masks/mask1.png" id="2_1lr2w"]
+[ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="1_mxbap"]
+[ext_resource type="Texture2D" uid="uid://caaj1l8yb2jyf" path="res://art/masks/mask1-pieces/mask1-topLeft.png" id="1_sanhd"]
 
 [resource]
 script = ExtResource("1_mxbap")
-piece = "The Eye of Popo"
+piece = "Wooden Head"
 followers = 1
 position = 63
-mask_piece_sprite = ExtResource("2_1lr2w")
+mask_piece_sprite = ExtResource("1_sanhd")
 available_in_round = 1
+effect = "Add 1 follower"
+mask_type = 1
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

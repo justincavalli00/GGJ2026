@@ -39,6 +39,9 @@ func _on_mouse_exited():
 func _togglePanel(value):
 	var panel = get_node("Panel")	
 	panel.visible = value
+	if mask_piece_data == null:
+		panel.get_child(0).text = "Unknown piece"
+		return
 	var tooltip_text = mask_piece_data.piece
 	if mask_piece_data.heretics != 0:
 		tooltip_text += "\n" + "Heretics: " + str(mask_piece_data.heretics)
