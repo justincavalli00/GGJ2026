@@ -11,6 +11,8 @@ var id = randi_range(1, 1000)
 var _highlight: ColorRect = null
 var _close_timer: Timer = null
 const TOOLTIP_CLOSE_DELAY := 0.15
+const TOOLTIP_WIDTH := 260
+const TOOLTIP_HEIGHT := 160
 
 signal selected(maskPiece)
 
@@ -76,9 +78,60 @@ func _delayed_close_tooltip():
 	_togglePanel(false)
 	
 
+func _is_in_offerings() -> bool:
+	var n = get_parent()
+	while n:
+		if n.name == "HBox_Offering" or n.name == "Panel_Offerings":
+			return true
+		n = n.get_parent()
+	return false
+
+func _is_tooltip_on_left() -> bool:
+	# Mask grid: left column = VBox_Left, right column = VBox_Right
+	var n = get_parent()
+	while n:
+		if n.name == "VBox_Left":
+			return true
+		if n.name == "VBox_Right":
+			return false
+		n = n.get_parent()
+	# Other (shouldn't happen if offerings handled): use global position
+	var viewport_width = get_viewport().get_visible_rect().size.x
+	var center_x = get_global_rect().get_center().x
+	return center_x < viewport_width * 0.5
+
+func _apply_tooltip_side(panel: Control) -> void:
+	if _is_in_offerings():
+		# Offerings: tooltip above the piece (centered)
+		panel.set_anchors_preset(Control.PRESET_CENTER_TOP)
+		panel.offset_left = -TOOLTIP_WIDTH / 2
+		panel.offset_top = -TOOLTIP_HEIGHT
+		panel.offset_right = TOOLTIP_WIDTH / 2
+		panel.offset_bottom = -20
+		panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+		panel.grow_vertical = Control.GROW_DIRECTION_END
+		return
+	var on_left := _is_tooltip_on_left()
+	panel.set_anchors_preset(Control.PRESET_TOP_LEFT if on_left else Control.PRESET_TOP_RIGHT)
+	if on_left:
+		panel.offset_left = -TOOLTIP_WIDTH
+		panel.offset_top = -TOOLTIP_HEIGHT
+		panel.offset_right = 0
+		panel.offset_bottom = -20
+	else:
+		panel.offset_left = 0
+		panel.offset_top = -TOOLTIP_HEIGHT
+		panel.offset_right = TOOLTIP_WIDTH
+		panel.offset_bottom = -20
+	panel.grow_horizontal = Control.GROW_DIRECTION_BEGIN if on_left else Control.GROW_DIRECTION_END
+	panel.grow_vertical = Control.GROW_DIRECTION_END
+
 func _togglePanel(value):
-	var panel = get_node("Panel")	
+	var panel = get_node("Panel")
 	panel.visible = value
+	if not value:
+		return
+	_apply_tooltip_side(panel)
 	if mask_piece_data == null:
 		panel.get_child(0).text = "Unknown piece"
 		return
