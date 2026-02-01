@@ -189,17 +189,27 @@ func _UpdateEffects():
 	var heretics = 0
 	var offerings = 0
 	
+	var current_pieces: Array = []
 	for maskSlot in all_slots:
 		# A mask piece is in the slot
 		var piece = maskSlot.get_child(0)
-		if piece != null and piece.mask_piece_data != null:
-			followers += piece.mask_piece_data.followers
-			timeInDay += piece.mask_piece_data.time_in_day
-			heretics += piece.mask_piece_data.heretics
-			offerings += piece.mask_piece_data.offerings
-	
+		var data = piece.mask_piece_data if piece != null and piece.get("mask_piece_data") != null else null
+		current_pieces.append(data)
+		if data is Mask_Piece_Data:
+			followers += data.followers
+			timeInDay += data.time_in_day
+			heretics += data.heretics
+			offerings += data.offerings
+
+	var synergy_text: String = "Multiplier: 1x"
+	if _session:
+		synergy_text = "Multiplier: " + _session.get_synergy_display_for_pieces(current_pieces)
+
 	$Panel_Effects/VBox_Effects/Lbl_Effect_1.text = "Followers: " + str(followers)
 	$Panel_Effects/VBox_Effects/Lbl_Effect_2.text = "Time In Day: " + str(timeInDay)
 	$Panel_Effects/VBox_Effects/Lbl_Effect_3.text = "Heretics: " + str(heretics)
 	$Panel_Effects/VBox_Effects/Lbl_Effect_4.text = "Offerings: " + str(offerings)
 	$Panel_Effects/VBox_Effects/Lbl_Current_Round.text = "Current Round: " + str(current_round)
+	var lbl_synergy = get_node_or_null("Panel_Effects/VBox_Effects/Lbl_Synergy")
+	if lbl_synergy:
+		lbl_synergy.text = synergy_text

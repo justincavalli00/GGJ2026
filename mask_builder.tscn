@@ -11,6 +11,18 @@
 [ext_resource type="Texture2D" uid="uid://cpjhiuml47k40" path="res://art/placeholders/bg-bottomRight.png" id="8_6q0x0"]
 [ext_resource type="Texture2D" uid="uid://cw7n2rrvdc4qm" path="res://art/placeholders/character.png" id="9_vvqym"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvqym"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
 [node name="MaskBuilder" type="Control" unique_id=118971534]
 layout_mode = 3
 anchors_preset = 15
@@ -216,10 +228,12 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -100.0
-offset_right = 300.0
-offset_bottom = 100.0
+offset_left = 33.0
+offset_top = -233.0
+offset_right = 408.0
+offset_bottom = 184.0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vvqym")
 
 [node name="VBox_Effects" type="VBoxContainer" parent="Panel_Effects" unique_id=884934485]
 custom_minimum_size = Vector2(200, 0)
@@ -259,6 +273,11 @@ text = "Effect #3"
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Effect #3"
+
+[node name="Lbl_Synergy" type="Label" parent="Panel_Effects/VBox_Effects" unique_id=1928374650]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Multiplier: 1x"
 
 [node name="Panel_Start" type="Panel" parent="." unique_id=291847096]
 custom_minimum_size = Vector2(200, 0)
