@@ -6,4 +6,4 @@ func _ready():
 	bttn_start.pressed.connect(Pressed_Start)
 	
 func Pressed_Start():
-	get_tree().change_scene_to_file("res://village.tscn")
+	get_tree().change_scene_to_file("res://day.tscn")

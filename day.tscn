@@ -1,12 +1,51 @@
 [gd_scene format=3 uid="uid://c3aflwcfg4sgl"]
 
+[ext_resource type="Script" uid="uid://fm1gloh7h61b" path="res://day.gd" id="1_lqptk"]
 [ext_resource type="Texture2D" uid="uid://833lq6rkersh" path="res://art/placeholders/pawn.png" id="1_q5e70"]
 [ext_resource type="Texture2D" uid="uid://nctf6uke6b8x" path="res://art/placeholders/pentagon_outline.png" id="2_jak2h"]
 [ext_resource type="Texture2D" uid="uid://dpbf8sicmh720" path="res://art/placeholders/skull.png" id="2_wybox"]
 [ext_resource type="Texture2D" uid="uid://f127hl21vt3v" path="res://art/placeholders/pentagon_question.png" id="3_wybox"]
 [ext_resource type="Texture2D" uid="uid://cw7n2rrvdc4qm" path="res://art/placeholders/character.png" id="4_6t5gs"]
 
-[node name="Village" type="Node2D" unique_id=311523632]
+[sub_resource type="Animation" id="Animation_lqptk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lbl_Goal:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7gchi"]
+resource_name = "anim_show_goal"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Lbl_Goal:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbc73"]
+_data = {
+&"RESET": SubResource("Animation_lqptk"),
+&"anim_show_goal": SubResource("Animation_7gchi")
+}
+
+[node name="Day" type="Node2D" unique_id=311523632]
+script = ExtResource("1_lqptk")
 
 [node name="Background" type="Node2D" parent="." unique_id=1947651675]
 
@@ -130,3 +169,98 @@ texture = ExtResource("4_6t5gs")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=24029318]
 position = Vector2(960, 540)
 zoom = Vector2(1.75, 1.75)
+
+[node name="Canvas" type="CanvasLayer" parent="." unique_id=1072350791]
+
+[node name="Margin_Goal" type="MarginContainer" parent="Canvas" unique_id=411460452]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBox_Goal" type="VBoxContainer" parent="Canvas/Margin_Goal" unique_id=1573353845]
+layout_mode = 2
+
+[node name="Lbl_Goal" type="Label" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=1485648699]
+self_modulate = Color(1, 1, 1, 0.64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "FIND THE HERETIC!"
+horizontal_alignment = 1
+
+[node name="Lbl_Time_Left" type="Label" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=70012152]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "10"
+horizontal_alignment = 1
+
+[node name="AP_Goal" type="AnimationPlayer" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=1877851894]
+libraries/ = SubResource("AnimationLibrary_kbc73")
+autoplay = &"anim_show_goal"
+
+[node name="Pnl_Results" type="Panel" parent="Canvas/Margin_Goal" unique_id=2107447449]
+visible = false
+layout_mode = 2
+
+[node name="VBox_Results" type="VBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results" unique_id=1451686035]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lbl_Results" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=1435118272]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "RESULTS"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=883508817]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="Lbl_Required" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=986854612]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "REQUIRED FOLLOWERS: 20"
+horizontal_alignment = 1
+
+[node name="Lbl_Gained" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=1887614646]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Gained Followers: 4"
+horizontal_alignment = 1
+
+[node name="Lbl_Heretics" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=1895410582]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Heretics Found: 1 "
+horizontal_alignment = 1
+
+[node name="Lbl_Lost" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=1148394804]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Followers Lost: 3 "
+horizontal_alignment = 1
+
+[node name="Lbl_Total" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=1946892537]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "TOTAL FOLLOWERS: 21"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=2046795285]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="Bttn_Next" type="Button" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=389349076]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "CONTINUE/RESTART"
