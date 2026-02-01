@@ -197,7 +197,6 @@ alignment = 1
 [node name="Offering_1" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=1621278620]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 texture = ExtResource("1_ugguo")
 
 [node name="Offering_2" type="TextureRect" parent="Panel_Offerings/HBox_Offering" unique_id=1826784068]

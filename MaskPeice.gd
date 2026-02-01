@@ -8,6 +8,7 @@ var dragging: bool = true
 
 var oldZIndex: int
 var id = randi_range(1, 1000)
+var _highlight: ColorRect = null
 
 signal selected(maskPiece)
 
@@ -15,6 +16,9 @@ signal selected(maskPiece)
 func _ready():
 	layout_mode = 1		#layout mode = anchors
 	anchors_preset = PRESET_FULL_RECT    #anchors preset = full rect
+	_highlight = get_node_or_null("Highlight")
+	if _highlight:
+		_highlight.visible = false
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,6 +57,11 @@ func _togglePanel(value):
 		tooltip_text += "\n" + "Offerings: " + str(mask_piece_data.offerings)
 	panel.get_child(0).text = tooltip_text
 	
+
+
+func set_selected(is_selected: bool) -> void:
+	if _highlight:
+		_highlight.visible = is_selected
 
 
 func _on_gui_input(event):
