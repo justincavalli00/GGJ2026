@@ -87,7 +87,7 @@ func _get_round_multiplier() -> float:
 		print("[SessionData]   Round multiplier: %s (from %d piece(s))" % [str(factor), flip_index])
 	return factor
 
-## Synergy: when two pieces of the same mask_type share a side = 2x; when three share = 3x.
+## Synergy: same-type adjacent groups each give synergy_multiplier^(N-1); multiple groups multiply.
 func _get_synergy_multiplier() -> float:
 	return _compute_synergy_from_pieces(built_mask_pieces)
 
@@ -100,68 +100,74 @@ func get_synergy_display_for_pieces(pieces: Array) -> String:
 	return _multiplier_display(mult) + "x"
 
 func _compute_synergy_from_pieces(pieces: Array) -> float:
-	var slot_type: Dictionary = {}  # slot_index -> mask_type (only filled slots)
+	# slot_index -> piece data (only filled slots)
+	var slot_data: Dictionary = {}
 	for i in range(min(pieces.size(), SLOT_ADJACENCY.size())):
 		var data = pieces[i]
 		if data is Mask_Piece_Data:
-			slot_type[i] = data.mask_type
-	if slot_type.size() < 2:
-		if slot_type.size() == 1 and pieces == built_mask_pieces:
+			slot_data[i] = data
+	if slot_data.size() < 2:
+		if slot_data.size() == 1 and pieces == built_mask_pieces:
 			print("[SessionData]   Synergy: only 1 piece -> no bonus (1x)")
 		return 1.0
-	# Find largest connected component of same type (by adjacency)
+	# Find all connected components of same type; each group contributes base^(N-1), multiply together
 	var visited: Dictionary = {}
-	for slot in slot_type:
+	for slot in slot_data:
 		visited[slot] = false
-	var max_component_size: int = 1
-	var components_log: Array[String] = []
-	for start in slot_type:
+	var total_synergy: float = 1.0
+	var is_results_calc: bool = (pieces == built_mask_pieces)
+	for start in slot_data:
 		if visited[start]:
 			continue
+		var data: Mask_Piece_Data = slot_data[start]
+		var t: int = data.mask_type
+		var base: float = data.synergy_multiplier
 		var component: Array = []
 		var stack: Array = [start]
-		var t: int = slot_type[start]
 		while stack.size() > 0:
 			var cur: int = stack.pop_back()
-			if visited[cur] or (slot_type.get(cur, -999) != t):
+			if visited[cur]:
+				continue
+			var cur_data: Mask_Piece_Data = slot_data[cur]
+			if cur_data.mask_type != t:
 				continue
 			visited[cur] = true
 			component.append(cur)
 			for adj in SLOT_ADJACENCY[cur]:
-				if slot_type.has(adj) and not visited[adj] and slot_type[adj] == t:
+				if slot_data.has(adj) and not visited[adj] and slot_data[adj].mask_type == t:
 					stack.append(adj)
-		if component.size() > max_component_size:
-			max_component_size = component.size()
 		if component.size() >= 2:
-			components_log.append("type %d in slots %s (size %d)" % [t, str(component), component.size()])
-	var is_results_calc: bool = (pieces == built_mask_pieces)
-	if is_results_calc and components_log.size() > 0:
-		print("[SessionData]   Synergy: same-type groups: %s" % str(components_log))
-	if max_component_size >= 3:
-		if is_results_calc:
-			print("[SessionData]   Synergy: largest group %d -> multiplier 3x" % max_component_size)
-		return 3.0
-	if max_component_size >= 2:
-		if is_results_calc:
-			print("[SessionData]   Synergy: largest group %d -> multiplier 2x" % max_component_size)
-		return 2.0
-	if is_results_calc:
+			var group_mult: float = pow(base, component.size() - 1)
+			total_synergy *= group_mult
+			if is_results_calc:
+				print("[SessionData]   Synergy: type %d slots %s (size %d) base %.1f -> %.1fx (total %.1fx)" % [t, str(component), component.size(), base, group_mult, total_synergy])
+	if is_results_calc and total_synergy <= 1.0:
 		print("[SessionData]   Synergy: no adjacent same-type -> 1x")
-	return 1.0
+	return total_synergy
 
 func _multiplier_display(factor: float) -> String:
+	if factor >= 0.99 and factor <= 1.01:
+		return "1"
 	if factor >= 1.99 and factor <= 2.01:
 		return "2"
 	if factor >= 2.99 and factor <= 3.01:
 		return "3"
 	if factor >= 3.99 and factor <= 4.01:
 		return "4"
+	if factor >= 7.99 and factor <= 8.01:
+		return "8"
+	if factor >= 15.99 and factor <= 16.01:
+		return "16"
+	if factor >= 31.99 and factor <= 32.01:
+		return "32"
 	if factor >= 0.49 and factor <= 0.51:
 		return "0.5"
 	if factor >= 0.24 and factor <= 0.26:
 		return "0.25"
-	if factor >= 0.99 and factor <= 1.01:
-		return "1"
+	# Round to int if close
+	var r: int = int(round(factor))
+	if abs(float(r) - factor) < 0.02:
+		return str(r)
 	return str(factor)
 
 func get_followers_breakdown() -> Array[String]:

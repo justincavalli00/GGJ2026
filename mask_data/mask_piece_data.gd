@@ -11,6 +11,8 @@ class_name Mask_Piece_Data extends Resource
 @export_flags("Round 1", "Round 2", "Round 3", "Round 4", "Round 5", "Round 6") var available_in_round : int
 @export var effect : String = ""
 @export var mask_type : int = 0
+## Synergy: base multiplier for same-type adjacent groups. Group of N pieces = synergy_multiplier^(N-1). Multiple groups multiply. Default 2x (e.g. 2 pieces=2x, 3=4x, 4=8x).
+@export var synergy_multiplier: float = 2.0
 ## Multiplier applied to follower count at result time. null/0 = none, 2 = 2x, 3 = 3x, -2 = half.
 @export var multiplier: int = 0
 ## If non-empty, one value is chosen at random each round as multiplier (e.g. [ -2, 2 ] for 50% half, 50% double).
