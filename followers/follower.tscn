@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dyhajxfwyll2q"]
 
-[ext_resource type="Texture2D" uid="uid://diane47ys62b" path="res://art/human/head.png" id="1_3mtco"]
 [ext_resource type="Script" uid="uid://dtepq5hx6toqa" path="res://followers/follower.gd" id="1_arita"]
-[ext_resource type="Texture2D" uid="uid://b11igv4kbua4w" path="res://art/human/body.png" id="2_arita"]
-[ext_resource type="Texture2D" uid="uid://brxdi1ssor22g" path="res://art/human/leftArm.png" id="3_erk2p"]
-[ext_resource type="Texture2D" uid="uid://dkbx4bdjdv2xr" path="res://art/human/rightArm.png" id="4_pnuqx"]
+[ext_resource type="Texture2D" uid="uid://cr587mfjtnmt8" path="res://art/newHuman/head.png" id="2_arita"]
+[ext_resource type="Texture2D" uid="uid://b8ee8qx2n8o4e" path="res://art/newHuman/body.png" id="3_erk2p"]
+[ext_resource type="Texture2D" uid="uid://bq2gvjjles3iw" path="res://art/newHuman/leftarm.png" id="4_pnuqx"]
+[ext_resource type="Texture2D" uid="uid://cqmix7dcqsgg5" path="res://art/newHuman/rightarm.png" id="5_438re"]
 
 [sub_resource type="Animation" id="Animation_3mtco"]
 length = 0.001
@@ -30,7 +30,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-400, 0)]
+"values": [Vector2(-150, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -54,7 +54,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(400, 0)]
+"values": [Vector2(150, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_erk2p"]
@@ -71,7 +71,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.4, 0.76666665, 1.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(100, 0), Vector2(0, 0), Vector2(-100, 0)]
+"values": [Vector2(100, 0), Vector2(0, 0), Vector2(-50, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_arita"]
@@ -100,7 +100,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-400, 0), Vector2(-400, 50), Vector2(-400, 0)]
+"values": [Vector2(-150, 0), Vector2(-150, 50), Vector2(-150, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -112,7 +112,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(400, 0), Vector2(400, 50), Vector2(400, 0)]
+"values": [Vector2(150, 0), Vector2(150, 50), Vector2(150, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -124,7 +124,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-100, 0), Vector2(0, 50), Vector2(100, 0)]
+"values": [Vector2(-50, 0), Vector2(0, -50), Vector2(100, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_erk2p"]
@@ -138,29 +138,29 @@ _data = {
 script = ExtResource("1_arita")
 
 [node name="Head" type="Node2D" parent="." unique_id=1378318375]
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.15, 0.15)
 
 [node name="Spr_Head" type="Sprite2D" parent="Head" unique_id=1612442197]
-texture = ExtResource("1_3mtco")
+texture = ExtResource("2_arita")
 
 [node name="Body" type="Node2D" parent="." unique_id=1345616140]
 position = Vector2(0, 50)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.15, 0.15)
 
 [node name="Spr_Body" type="Sprite2D" parent="Body" unique_id=1185006938]
-texture = ExtResource("2_arita")
+texture = ExtResource("3_erk2p")
 
 [node name="Arms" type="Node2D" parent="." unique_id=1016349096]
 position = Vector2(0, 30)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.15, 0.15)
 
 [node name="Spr_Arm_Left" type="Sprite2D" parent="Arms" unique_id=1062975093]
-position = Vector2(-400, 0)
-texture = ExtResource("3_erk2p")
+position = Vector2(-150, 0)
+texture = ExtResource("4_pnuqx")
 
 [node name="Spr_Arm_Right" type="Sprite2D" parent="Arms" unique_id=306174398]
-position = Vector2(400, 0)
-texture = ExtResource("4_pnuqx")
+position = Vector2(150, 0)
+texture = ExtResource("5_438re")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1998688472]
 libraries/ = SubResource("AnimationLibrary_erk2p")
