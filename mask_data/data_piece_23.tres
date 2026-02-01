@@ -6,11 +6,12 @@
 [resource]
 script = ExtResource("1_nbgvw")
 piece = "Final Mouth"
-followers = 50
+followers = 15
 time_in_day = 1.0
 heretics = 3
 mask_piece_sprite = ExtResource("1_eqjqp")
 available_in_round = 48
 effect = "Add 50 Followers"
 mask_type = 4
+synergy_multiplier = 2.5
 metadata/_custom_type_script = "uid://dsiteoo0w876x"
