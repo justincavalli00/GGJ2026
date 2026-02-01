@@ -113,7 +113,7 @@ func Spawn_Followers() -> void:
 		follower.add_to_group("followers")  # Important for flocking!
 
 		# Add click signal handler for follower
-		follower.clicked.connect(on_follower_clicked)
+		follower.clicked.connect(on_follower_clicked.bind(follower))
 
 		# Set initial position
 		follower.global_position = random_spawn.global_position
@@ -217,9 +217,14 @@ func Show_Results() -> void:
 func Build_Mask():
 	pass
 	
-func on_follower_clicked():
+func on_follower_clicked(follower):
+	follower.queue_free()
+	current_followers -= 1
 	print("follower clicked")
 	
 func on_heretic_clicked(heretic):
 	heretic.queue_free()
+	heretic_count -= 1
+	if (heretic_count <= 0):
+		Show_Results()
 	print("heretic clicked")
