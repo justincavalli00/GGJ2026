@@ -1,9 +1,14 @@
-[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://fclseywdt11x"]
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://cjdyacj0501vw"]
 
 [ext_resource type="Texture2D" uid="uid://c6a7jggpa4tw6" path="res://art/masks/NewMask3/6.png" id="1_w721u"]
 [ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="2_w7jci"]
 
 [resource]
 script = ExtResource("2_w7jci")
+piece = "Cursed Mouth"
+followers = -10
 mask_piece_sprite = ExtResource("1_w721u")
+available_in_round = 60
+effect = "Remove 10 Followers"
+mask_type = 3
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

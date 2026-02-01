@@ -5,5 +5,10 @@
 
 [resource]
 script = ExtResource("2_l13il")
+piece = "Cursed Eye"
+followers = -5
 mask_piece_sprite = ExtResource("1_c76d1")
+available_in_round = 60
+effect = "Remove 5 Followers"
+mask_type = 3
 metadata/_custom_type_script = "uid://dsiteoo0w876x"
