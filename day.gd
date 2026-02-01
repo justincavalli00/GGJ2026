@@ -23,20 +23,48 @@ const FOLLOWER = preload("uid://dyhajxfwyll2q")
 @onready var anim_goal: AnimationPlayer = $Canvas/Margin_Goal/VBox_Goal/Anim_Goal
 @onready var spawn: Node2D = $Followers/Spawn
 @onready var group: Node2D = $Followers/Group
-
+@onready var totem_face: Node2D = $Totem/Face
 
 
 func _ready() -> void:
 	bttn_next.pressed.connect(Pressed_Next)
 	pnl_results.visible = false
+	_build_totem_face()
 	timer.wait_time = time_left
 	timer.one_shot = true
 	timer.timeout.connect(Show_Results)
 	add_child(timer)
 	timer.start()
 	Spawn_Followers()
-	
 	pass
+
+
+func _build_totem_face() -> void:
+	# Display the player's built mask on the totem (visual only, no interaction).
+	# Slot order: Left_Top, Left_Mid, Left_Bottom, Right_Top, Right_Mid, Right_Bottom
+	# 2x3 vertical grid, each cell fixed size; same expand/stretch as mask_piece
+	const CELL_W := 160
+	const CELL_H := 160
+	# Top-left position per slot (2 cols x 3 rows), centered so grid center is at (0,0)
+	var slot_positions := [
+		Vector2(-CELL_W, -CELL_H * 3 / 2),      # left, top
+		Vector2(-CELL_W, -CELL_H / 2),         # left, mid
+		Vector2(-CELL_W, CELL_H / 2),          # left, bottom
+		Vector2(0, -CELL_H * 3 / 2),           # right, top
+		Vector2(0, -CELL_H / 2),               # right, mid
+		Vector2(0, CELL_H / 2),                 # right, bottom
+	]
+	for i in range(min(SessionData.built_mask_pieces.size(), slot_positions.size())):
+		var data = SessionData.built_mask_pieces[i]
+		if data is Mask_Piece_Data and data.mask_piece_sprite != null:
+			var rect := TextureRect.new()
+			rect.texture = data.mask_piece_sprite
+			rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+			rect.position = slot_positions[i]
+			rect.size = Vector2(CELL_W, CELL_H)
+			rect.custom_minimum_size = Vector2(CELL_W, CELL_H)
+			totem_face.add_child(rect)
 
 
 func Spawn_Followers() -> void:
@@ -90,9 +118,10 @@ func Pressed_Next():
 
 	pass
 		
-func Show_Results():
+func Show_Results() -> void:
+	var followers_added: int = SessionData.get_followers_added()
+	lbl_gained.text = "Followers added: %d" % followers_added
 	pnl_results.visible = true
-	pass
 	
 func Build_Mask():
 	pass

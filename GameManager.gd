@@ -141,6 +141,15 @@ func _on_slot_clicked(maskSlot):
 		_UpdateEffects()
 
 func _on_bttn_start_pressed():
+	# Store built mask for day scene (totem display + results)
+	SessionData.built_mask_pieces.clear()
+	var all_slots = []
+	all_slots += $Panel_Mask/HBox_Mask/VBox_Left.get_children()
+	all_slots += $Panel_Mask/HBox_Mask/VBox_Right.get_children()
+	for maskSlot in all_slots:
+		var piece = maskSlot.get_child(0) if maskSlot.get_child_count() > 0 else null
+		var data: Mask_Piece_Data = piece.mask_piece_data if piece != null and piece.get("mask_piece_data") != null else null
+		SessionData.built_mask_pieces.append(data)
 	get_tree().change_scene_to_file("res://day.tscn")
 
 func _UpdateEffects():
