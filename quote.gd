@@ -11,7 +11,7 @@ var startup_quotes: Array[String] = [
 	"P.S. You wont need a documentary to leave this cult",
 	"Today feels like a good day for coarsening subjects!",
 	"Seize the day and take advantage (of them)!",
-	"Today is the day to start the original influencing life of cult leadership.",
+#	"Today is the day to start the original influencing life of cult leadership.",
 	"Go get ‘em oh master, genius, leader…",
 	"The folks out here are ready to believe in something."
 ]
