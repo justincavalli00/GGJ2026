@@ -22,13 +22,13 @@ scale = Vector2(0.9999998, 1)
 texture = ExtResource("2_mom7w")
 
 [node name="Credits" type="Sprite2D" parent="." unique_id=1167701145]
-position = Vector2(1215.899, 75.23761)
-rotation = -1.5614291
-scale = Vector2(0.41181558, 0.41181567)
+position = Vector2(998.00006, 153)
+rotation = -1.5654588
+scale = Vector2(0.39131814, 0.39131823)
 texture = ExtResource("3_7lgly")
 
 [node name="Credits2" type="Sprite2D" parent="." unique_id=1288998191]
-position = Vector2(729.89905, 74.23761)
+position = Vector2(992.5079, 77.23765)
 rotation = -1.5614291
 scale = Vector2(0.41181558, 0.41181567)
 texture = ExtResource("4_0824t")
