@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://bmsg1knsalqct"]
 
 [ext_resource type="Script" uid="uid://l8vjstan61te" path="res://GameManager.gd" id="1_7cfo4"]
-[ext_resource type="Texture2D" uid="uid://cbq5l3jxn2ien" path="res://art/placeholders/bg-topLeft.png" id="2_lpdfi"]
+[ext_resource type="Texture2D" uid="uid://bcugb7byuvtfg" path="res://art/masks/NewMask1/1.png" id="2_vvqym"]
 [ext_resource type="Script" uid="uid://rqld00bsjbh0" path="res://MaskSlot.gd" id="3_i4fcx"]
-[ext_resource type="Texture2D" uid="uid://dpeugnd4bkqb0" path="res://art/placeholders/bg-middleLeft.png" id="4_vvqym"]
-[ext_resource type="Texture2D" uid="uid://bda5dfyrxm3ts" path="res://art/placeholders/bg-bottomLeft.png" id="5_e725m"]
-[ext_resource type="Texture2D" uid="uid://ddqkx0ubmfnrw" path="res://art/placeholders/bg-topRight.png" id="6_ofsgg"]
-[ext_resource type="Texture2D" uid="uid://duj7h2b6mf6je" path="res://art/placeholders/bg-middleRight.png" id="7_e6uco"]
-[ext_resource type="Texture2D" uid="uid://cpjhiuml47k40" path="res://art/placeholders/bg-bottomRight.png" id="8_6q0x0"]
+[ext_resource type="Texture2D" uid="uid://c0osb7u5sp1hc" path="res://art/masks/NewMask1/3.png" id="4_e725m"]
+[ext_resource type="Texture2D" uid="uid://c1w1cqqekntlo" path="res://art/masks/NewMask1/5.png" id="5_ofsgg"]
+[ext_resource type="Texture2D" uid="uid://b16tapdc5pd4v" path="res://art/masks/NewMask1/2.png" id="6_ofsgg"]
+[ext_resource type="Texture2D" uid="uid://276brydd5sqd" path="res://art/masks/NewMask1/4.png" id="7_e6uco"]
+[ext_resource type="Texture2D" uid="uid://bq44iqj5pnnab" path="res://art/masks/NewMask1/6.png" id="8_6q0x0"]
 [ext_resource type="PackedScene" uid="uid://dyhajxfwyll2q" path="res://followers/follower.tscn" id="9_e725m"]
 [ext_resource type="Texture2D" uid="uid://bvwqtoewvuqap" path="res://art/placeholders/dice_1.png" id="10_vvqym"]
-[ext_resource type="AudioStream" path="res://audio/Mask_Build.mp3" id="11_maskbuild"]
-[ext_resource type="AudioStream" path="res://audio/Mask_Discard.mp3" id="12_maskdiscard"]
+[ext_resource type="AudioStream" uid="uid://cic7crors76dn" path="res://audio/Mask_Build.mp3" id="11_maskbuild"]
+[ext_resource type="AudioStream" uid="uid://cmasw0scqvtw7" path="res://audio/Mask_Discard.mp3" id="12_maskdiscard"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e725m"]
 bg_color = Color(0.81, 0.81, 0.81, 1)
@@ -46,6 +46,31 @@ grow_vertical = 2
 script = ExtResource("1_7cfo4")
 drawCount = 3
 
+[node name="Panel_Title" type="Panel" parent="." unique_id=349743167]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 25.0
+offset_bottom = 125.0
+grow_horizontal = 2
+
+[node name="Box_Title" type="BoxContainer" parent="Panel_Title" unique_id=1633539993]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Lbl_Title" type="Label" parent="Panel_Title/Box_Title" unique_id=1719501922]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "BUILD YOUR CULT MASK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Panel_Mask" type="Panel" parent="." unique_id=1468931161]
 layout_mode = 1
 anchors_preset = 8
@@ -53,56 +78,65 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -325.0
-offset_right = 150.0
-offset_bottom = 125.0
+offset_left = -320.0
+offset_top = -413.0
+offset_right = 230.0
+offset_bottom = 387.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 0.8400003)
 theme_override_styles/panel = SubResource("StyleBoxFlat_e725m")
 
 [node name="HBox_Mask" type="HBoxContainer" parent="Panel_Mask" unique_id=1519705883]
-custom_minimum_size = Vector2(300, 450)
-layout_mode = 0
-offset_right = 304.0
-offset_bottom = 450.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -387.0
+offset_right = 258.0
+offset_bottom = 387.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 0
 alignment = 1
 
 [node name="VBox_Left" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=105798737]
-custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Left_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=1508198766]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(219, 161)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("2_lpdfi")
-expand_mode = 2
+texture = ExtResource("2_vvqym")
 script = ExtResource("3_i4fcx")
 
 [node name="Left_Mid" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=1775748460]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(255, 161)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("4_vvqym")
-expand_mode = 2
+texture = ExtResource("4_e725m")
 script = ExtResource("3_i4fcx")
 
 [node name="Left_Bottom" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Left" unique_id=642158878]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(258, 161)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("5_e725m")
-expand_mode = 2
+texture = ExtResource("5_ofsgg")
 script = ExtResource("3_i4fcx")
 
 [node name="VBox_Right" type="VBoxContainer" parent="Panel_Mask/HBox_Mask" unique_id=295311598]
-custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -110,31 +144,34 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Right_Top" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=330070472]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(230, 161)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("6_ofsgg")
-expand_mode = 2
 script = ExtResource("3_i4fcx")
 
 [node name="Right_Mid" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=2136730261]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(258, 161)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("7_e6uco")
-expand_mode = 2
 script = ExtResource("3_i4fcx")
 
 [node name="Right_Bottom" type="TextureRect" parent="Panel_Mask/HBox_Mask/VBox_Right" unique_id=56748151]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(256, 161)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("8_6q0x0")
-expand_mode = 2
 script = ExtResource("3_i4fcx")
 
 [node name="Followers" type="Node2D" parent="Panel_Mask" unique_id=1370970037]
-position = Vector2(654, 283)
+position = Vector2(870, 149.66672)
 scale = Vector2(0.5, 0.5)
 
 [node name="Left" type="Node2D" parent="Panel_Mask/Followers" unique_id=2090164170]
@@ -178,10 +215,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -280.0
-offset_right = 300.0
-offset_bottom = -80.0
+offset_left = -340.0
+offset_top = -260.0
+offset_right = 260.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -302,10 +339,10 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Start"
 
-[node name="Audio_MaskBuild" type="AudioStreamPlayer" parent="."]
+[node name="Audio_MaskBuild" type="AudioStreamPlayer" parent="." unique_id=1609808183]
 stream = ExtResource("11_maskbuild")
 
-[node name="Audio_MaskDiscard" type="AudioStreamPlayer" parent="."]
+[node name="Audio_MaskDiscard" type="AudioStreamPlayer" parent="." unique_id=961424433]
 stream = ExtResource("12_maskdiscard")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
