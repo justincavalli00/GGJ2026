@@ -276,10 +276,9 @@ libraries/ = SubResource("AnimationLibrary_kbc73")
 autoplay = &"anim_show_goal"
 
 [node name="Pnl_Results" type="Panel" parent="Canvas/Margin_Goal" unique_id=2107447449]
-visible = false
 layout_mode = 2
 
-[node name="VBox_Results" type="VBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results" unique_id=1451686035]
+[node name="Margin_Panel" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results" unique_id=1427599812]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -287,163 +286,162 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Lbl_Results" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=1435118272]
+[node name="VBox_Results" type="VBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel" unique_id=1451686035]
+layout_mode = 2
+alignment = 1
+
+[node name="Lbl_Results" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=1435118272]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Daily Results"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=883508817]
-layout_mode = 2
-theme_override_constants/margin_top = 100
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=1243750521]
+[node name="MarginContainer" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=883508817]
 layout_mode = 2
 
-[node name="Lbl_Required" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer" unique_id=986854612]
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=1243750521]
+layout_mode = 2
+alignment = 1
+
+[node name="Lbl_Required" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer" unique_id=986854612]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "FOLLOWERS NEEDED"
 horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer" unique_id=616323116]
+[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer" unique_id=616323116]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme_override_constants/margin_top = 100
 
-[node name="Lbl_Required_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer" unique_id=1331187911]
+[node name="Lbl_Required_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer" unique_id=1331187911]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=881706003]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=881706003]
 layout_mode = 2
+alignment = 1
 
-[node name="Lbl_Base_Mask" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer2" unique_id=1291836286]
+[node name="Lbl_Base_Mask" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer2" unique_id=1291836286]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "FROM MASK"
 horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer2" unique_id=112787186]
+[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer2" unique_id=112787186]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme_override_constants/margin_top = 100
 
-[node name="Lbl_Base_Mask_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer2" unique_id=1424556229]
+[node name="Lbl_Base_Mask_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer2" unique_id=1424556229]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 
-[node name="HBox_Smitten" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=829384756]
+[node name="HBox_Smitten" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=829384756]
 layout_mode = 2
+alignment = 1
 
-[node name="Lbl_Smitten" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBox_Smitten" unique_id=829384757]
+[node name="Lbl_Smitten" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBox_Smitten" unique_id=829384757]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "FOLLOWERS SMITTEN"
 horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBox_Smitten" unique_id=829384758]
+[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBox_Smitten" unique_id=829384758]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme_override_constants/margin_top = 100
 
-[node name="Lbl_Smitten_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBox_Smitten" unique_id=829384759]
+[node name="Lbl_Smitten_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBox_Smitten" unique_id=829384759]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=2100620728]
+[node name="HBoxContainer5" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=2100620728]
 layout_mode = 2
+alignment = 1
 
-[node name="Lbl_Mask_Multi" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5" unique_id=1537291655]
+[node name="Lbl_Mask_Multi" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1537291655]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "MASK MULTIPLIER"
 horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5" unique_id=1025125355]
+[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1025125355]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_constants/margin_top = 100
 
-[node name="Lbl_Mask_Multi_X" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5" unique_id=1562777906]
+[node name="Lbl_Mask_Multi_X" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1562777906]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "x"
 horizontal_alignment = 1
 
-[node name="Lbl_Mask_Multi_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5" unique_id=1689093352]
+[node name="Lbl_Mask_Multi_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1689093352]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5" unique_id=1719772876]
+[node name="MarginContainer4" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1719772876]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme_override_constants/margin_top = 100
 
-[node name="Lbl_Flip_Results_Label" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5" unique_id=381829752]
+[node name="Lbl_Flip_Results_Label" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=381829752]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Flip:"
 
-[node name="Lbl_Flip_Results" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer5" unique_id=1535129297]
+[node name="Lbl_Flip_Results" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1535129297]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "2 x 3"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=144828250]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=144828250]
 visible = false
 layout_mode = 2
 
-[node name="Lbl_Required" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer3" unique_id=588268738]
+[node name="Lbl_Required" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer3" unique_id=588268738]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "REQUIRED FOLLOWERS"
 horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer3" unique_id=1973898267]
+[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer3" unique_id=1973898267]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_constants/margin_top = 100
 
-[node name="Lbl_Required_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer3" unique_id=369555664]
+[node name="Lbl_Required_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer3" unique_id=369555664]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=1356196014]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=1356196014]
 layout_mode = 2
+alignment = 1
 
-[node name="Lbl_Total" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer4" unique_id=188361361]
+[node name="Lbl_Total" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer4" unique_id=188361361]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "TOTAL"
 horizontal_alignment = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer4" unique_id=1290958856]
+[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer4" unique_id=1290958856]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme_override_constants/margin_top = 100
 
-[node name="Lbl_Total_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBoxContainer4" unique_id=381829751]
+[node name="Lbl_Total_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer4" unique_id=381829751]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=2046795285]
-layout_mode = 2
-theme_override_constants/margin_top = 100
-
-[node name="Bttn_Next" type="Button" parent="Canvas/Margin_Goal/Pnl_Results/VBox_Results" unique_id=389349076]
+[node name="Bttn_Next" type="Button" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=389349076]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "CONTINUE/RESTART"
