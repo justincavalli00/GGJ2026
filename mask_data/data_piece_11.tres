@@ -12,6 +12,6 @@ time_in_day = 0.5
 heretics = 1
 mask_piece_sprite = ExtResource("1_sg0lw")
 available_in_round = 14
-effect = "Add 5 followers"
+effect = "Adds 5 followers"
 mask_type = 2
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

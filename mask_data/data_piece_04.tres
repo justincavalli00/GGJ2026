@@ -10,6 +10,6 @@ followers = 1
 position = 63
 mask_piece_sprite = ExtResource("1_iwf8a")
 available_in_round = 6
-effect = "Add 1 follower"
+effect = "Adds 1 follower"
 mask_type = 1
 metadata/_custom_type_script = "uid://dsiteoo0w876x"
