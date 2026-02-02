@@ -30,6 +30,7 @@ const FOLLOWER = preload("uid://dyhajxfwyll2q")
 @onready var lbl_flip_results: Label = $Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5/Lbl_Flip_Results
 @onready var lbl_base_mask_num: Label = $Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer2/Lbl_Base_Mask_Num
 @onready var lbl_mask_multi_num: Label = $Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5/Lbl_Mask_Multi_Num
+@onready var lbl_result: Label = $Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/Lbl_Result
 var _session: Node = null  # SessionData autoload, set in _ready()
 var lbl_gained: Label = null  # optional; set in _ready() if node exists
 var lbl_smitten_num: Label = null  # optional; set in _ready() if node exists
@@ -42,6 +43,19 @@ var _last_printed_second: int = -1
 var _loiter_markers: Array[Marker2D] = []
 var _loiter_timer: Timer = null
 const LOITER_INTERVAL: float = 2.5
+
+var win_quotes: Array[String] = [
+	"Look at you with that cult leader potential!",
+#	"High-five for the next Charles Manson!",
+	"Stop playing this and start preaching!",
+
+]
+
+var lose_quotes: Array[String] = [
+	"I don't think people want to follow you… Awkard!",
+	"I wouldnt tell this to anyone. For real.",
+	"1 Follower left: Mom",	
+]
 
 
 func _ready() -> void:
@@ -226,7 +240,12 @@ func Show_Results() -> void:
 			lines += str(breakdown[i])
 		lbl_flip_results.text = lines
 	if bttn_next:
-		bttn_next.text = "Continue" if total >= required else "New Game"
+		if total >= required: 
+			bttn_next.text = "Continue" 
+			lbl_result.text = random_win_message()
+		else :
+			bttn_next.text = "New Game"
+			lbl_result.text = random_lose_message()
 	pnl_results.visible = true
 	
 func Build_Mask():
@@ -259,3 +278,10 @@ func _play_smite_then_remove(node: Node, is_heretic: bool = false) -> void:
 		node.queue_free()
 		if is_heretic and current_heretics <= 0:
 			Show_Results()
+
+
+func random_win_message() -> String:
+	return win_quotes.pick_random()
+	
+func random_lose_message() -> String:
+	return lose_quotes.pick_random()

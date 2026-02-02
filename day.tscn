@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b0084dhctr2ot" path="res://art/cloud 1 .png" id="6_asg04"]
 [ext_resource type="Texture2D" uid="uid://ct83e5gptqs6p" path="res://art/cloud 2.png" id="7_1p1ot"]
 [ext_resource type="Texture2D" uid="uid://bp5ykj6g21pql" path="res://art/totem.png" id="9_fe8xe"]
+[ext_resource type="Theme" uid="uid://m7gobyytwltf" path="res://ui/ui.theme" id="12_ewl2x"]
 
 [sub_resource type="Animation" id="Animation_lqptk"]
 length = 0.001
@@ -40,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -253,29 +254,28 @@ theme_override_constants/margin_bottom = 25
 [node name="VBox_Goal" type="VBoxContainer" parent="Canvas/Margin_Goal" unique_id=1573353845]
 layout_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=957192335]
-layout_mode = 2
-theme_override_constants/margin_top = 100
-
 [node name="Lbl_Goal" type="Label" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=1485648699]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
-text = "FIND THE HERETIC!"
+text = "FIND THE HERETIC(s)!"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Lbl_Time_Left" type="Label" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=70012152]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0, 0, 0, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 72
 text = "10"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Anim_Goal" type="AnimationPlayer" parent="Canvas/Margin_Goal/VBox_Goal" unique_id=1877851894]
 libraries/ = SubResource("AnimationLibrary_kbc73")
 autoplay = &"anim_show_goal"
 
 [node name="Pnl_Results" type="Panel" parent="Canvas/Margin_Goal" unique_id=2107447449]
+visible = false
 layout_mode = 2
 
 [node name="Margin_Panel" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results" unique_id=1427599812]
@@ -285,6 +285,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
 
 [node name="VBox_Results" type="VBoxContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel" unique_id=1451686035]
 layout_mode = 2
@@ -293,7 +297,7 @@ alignment = 1
 [node name="Lbl_Results" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=1435118272]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Daily Results"
+text = "DAILY RESULTS"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=883508817]
@@ -305,8 +309,8 @@ alignment = 1
 
 [node name="Lbl_Required" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer" unique_id=986854612]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "FOLLOWERS NEEDED"
+theme_override_font_sizes/font_size = 48
+text = "Followers Needed"
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer" unique_id=616323116]
@@ -315,7 +319,7 @@ layout_mode = 2
 
 [node name="Lbl_Required_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer" unique_id=1331187911]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "0"
 horizontal_alignment = 1
 
@@ -325,8 +329,8 @@ alignment = 1
 
 [node name="Lbl_Base_Mask" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer2" unique_id=1291836286]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "FROM MASK"
+theme_override_font_sizes/font_size = 48
+text = "Followers From Mask"
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer2" unique_id=112787186]
@@ -335,7 +339,7 @@ layout_mode = 2
 
 [node name="Lbl_Base_Mask_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer2" unique_id=1424556229]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "0"
 horizontal_alignment = 1
 
@@ -345,8 +349,8 @@ alignment = 1
 
 [node name="Lbl_Smitten" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBox_Smitten" unique_id=829384757]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "FOLLOWERS SMITTEN"
+theme_override_font_sizes/font_size = 48
+text = "Followers Smitten"
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBox_Smitten" unique_id=829384758]
@@ -355,7 +359,7 @@ layout_mode = 2
 
 [node name="Lbl_Smitten_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBox_Smitten" unique_id=829384759]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "0"
 horizontal_alignment = 1
 
@@ -365,8 +369,8 @@ alignment = 1
 
 [node name="Lbl_Mask_Multi" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1537291655]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "MASK MULTIPLIER"
+theme_override_font_sizes/font_size = 48
+text = "Mask Multiplier"
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1025125355]
@@ -376,13 +380,13 @@ theme_override_constants/margin_top = 100
 
 [node name="Lbl_Mask_Multi_X" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1562777906]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "x"
 horizontal_alignment = 1
 
 [node name="Lbl_Mask_Multi_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer5" unique_id=1689093352]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "0"
 horizontal_alignment = 1
 
@@ -427,7 +431,7 @@ alignment = 1
 
 [node name="Lbl_Total" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer4" unique_id=188361361]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "TOTAL"
 horizontal_alignment = 1
 
@@ -437,11 +441,19 @@ layout_mode = 2
 
 [node name="Lbl_Total_Num" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBoxContainer4" unique_id=381829751]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "0"
 horizontal_alignment = 1
 
 [node name="Bttn_Next" type="Button" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=389349076]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme = ExtResource("12_ewl2x")
+theme_override_font_sizes/font_size = 56
 text = "CONTINUE/RESTART"
+
+[node name="Lbl_Result" type="Label" parent="Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results" unique_id=17470368]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Look at you with that cult leader potential!"
+horizontal_alignment = 1
+vertical_alignment = 1
