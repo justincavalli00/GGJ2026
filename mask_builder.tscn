@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cpjhiuml47k40" path="res://art/placeholders/bg-bottomRight.png" id="8_6q0x0"]
 [ext_resource type="PackedScene" uid="uid://dyhajxfwyll2q" path="res://followers/follower.tscn" id="9_e725m"]
 [ext_resource type="Texture2D" uid="uid://bvwqtoewvuqap" path="res://art/placeholders/dice_1.png" id="10_vvqym"]
+[ext_resource type="AudioStream" path="res://audio/Mask_Build.mp3" id="11_maskbuild"]
+[ext_resource type="AudioStream" path="res://audio/Mask_Discard.mp3" id="12_maskdiscard"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e725m"]
 bg_color = Color(0.81, 0.81, 0.81, 1)
@@ -299,6 +301,12 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
 text = "Start"
+
+[node name="Audio_MaskBuild" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_maskbuild")
+
+[node name="Audio_MaskDiscard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_maskdiscard")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="Panel_Start/VBox_Start/Bttn_Start" to="." method="_on_bttn_start_pressed"]

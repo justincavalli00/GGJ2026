@@ -11,6 +11,8 @@ var current_seed: int = 0
 var current_round: int = 1
 var built_mask_pieces: Array = []  # Array of Mask_Piece_Data (one per slot, null if empty)
 # Slot order matches mask builder: Left_Top, Left_Mid, Left_Bottom, Right_Top, Right_Mid, Right_Bottom
+## 1 heretic added per offering left unused when player starts the round (set by mask builder).
+var heretics_from_unused_offerings: int = 0
 
 const REQUIRED_PER_ROUND: Array = [2, 10, 50, 250, 500, 1000]  # round 1..6
 

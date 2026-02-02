@@ -64,7 +64,7 @@ func _ready() -> void:
 				heretics_from_mask += data.heretics
 	var total_duration: float = time_left + time_from_mask
 	timer.wait_time = total_duration
-	current_heretics = heretic_count + heretics_from_mask
+	current_heretics = heretic_count + heretics_from_mask + (_session.heretics_from_unused_offerings if _session else 0)
 	timer.one_shot = true
 	timer.timeout.connect(Show_Results)
 	add_child(timer)
@@ -226,12 +226,29 @@ func Build_Mask():
 	pass
 	
 func on_follower_clicked(follower_node):
-	follower_node.queue_free()
 	followers_smitten += 1
+	_play_smite_then_remove(follower_node)
 
 func on_heretic_clicked(heretic):
-	heretic.queue_free()
 	current_heretics -= 1
-	if current_heretics <= 0:
-		Show_Results()
-	print("heretic clicked")
+	_play_smite_then_remove(heretic, true)
+
+func _play_smite_then_remove(node: Node, is_heretic: bool = false) -> void:
+	var ap = node.get_node_or_null("AnimationPlayer")
+	if ap and ap.has_animation("smite"):
+		ap.play("smite")
+		var node_ref = node
+		var ap_ref = ap
+		var handler: Callable
+		handler = func(anim_name: String):
+			if anim_name == "smite" and is_instance_valid(node_ref):
+				if ap_ref.animation_finished.is_connected(handler):
+					ap_ref.animation_finished.disconnect(handler)
+				node_ref.queue_free()
+				if is_heretic and current_heretics <= 0:
+					Show_Results()
+		ap_ref.animation_finished.connect(handler)
+	else:
+		node.queue_free()
+		if is_heretic and current_heretics <= 0:
+			Show_Results()

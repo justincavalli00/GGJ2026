@@ -6,6 +6,8 @@ const FOLLOWER := preload("res://followers/follower.tscn")
 @export var drawCount : int
 var MaskScene
 var selected_maskPiece: Control = null
+@onready var _audio_mask_build: AudioStreamPlayer = $Audio_MaskBuild
+@onready var _audio_mask_discard: AudioStreamPlayer = $Audio_MaskDiscard
 var _mask_piece_data_list: Array[Mask_Piece_Data] = []
 var current_round: int = 1
 var _session: Node = null  # SessionData autoload, set in _ready()
@@ -136,6 +138,7 @@ func _on_maskPiece_selected(maskPiece):
 				selected_maskPiece.set_selected(false)
 			selected_maskPiece = null
 			_UpdateEffects()
+			_play_mask_build_feedback()
 			return
 		# Otherwise (e.g. selected placed, clicked offering): just select the clicked piece below
 	# Clicking the same piece again: deselect
@@ -158,6 +161,7 @@ func _on_slot_clicked(maskSlot):
 		if selected_maskPiece.has_method("set_selected"):
 			selected_maskPiece.set_selected(false)
 		var old_parent = selected_maskPiece.get_parent()
+		var was_from_offering := _is_in_offering(selected_maskPiece)
 		# If target slot already has a piece: from offering = replace (old piece goes to offering); from mask = swap slots
 		if maskSlot.get_child_count() > 0:
 			var existing_piece = maskSlot.get_child(0)
@@ -167,10 +171,20 @@ func _on_slot_clicked(maskSlot):
 		maskSlot.add_child(selected_maskPiece)
 		selected_maskPiece = null
 		_UpdateEffects()
+		if was_from_offering:
+			_play_mask_build_feedback()
 
 func _on_bttn_start_pressed():
 	if _session == null:
 		return
+	# Count unused offerings (masks not placed): 1 heretic per unused
+	var unused_count := 0
+	for offering in $Panel_Offerings/HBox_Offering.get_children():
+		if offering.get_child_count() > 0:
+			unused_count += 1
+	_session.heretics_from_unused_offerings = unused_count
+	if unused_count > 0 and _audio_mask_discard and not _audio_mask_discard.playing:
+		_audio_mask_discard.play()
 	# Store built mask for day scene (totem display + results)
 	_session.built_mask_pieces.clear()
 	_session.clear_followers_cache()
@@ -228,22 +242,54 @@ func _get_mask_follower_count() -> int:
 				n += data.followers
 	return n
 
-func _UpdateFollowers() -> void:
-	var count := _get_mask_follower_count()
+func _play_mask_build_feedback() -> void:
+	if _audio_mask_build and not _audio_mask_build.playing:
+		_audio_mask_build.play()
 	var container = get_node_or_null("Panel_Mask/Followers")
 	if container == null:
 		return
 	for child in container.get_children():
-		container.remove_child(child)
-		child.queue_free()
+		var ap = child.get_node_or_null("AnimationPlayer")
+		if ap and ap.has_animation("cheer"):
+			ap.play("cheer")
+
+func _UpdateFollowers() -> void:
+	var target_count := _get_mask_follower_count()
+	var container = get_node_or_null("Panel_Mask/Followers")
+	if container == null:
+		return
+	var current_count := container.get_child_count()
+	# Clear scene placeholders (Left, Center, Right) so we only have dynamic followers
+	if current_count > 0 and not container.get_child(0).has_method("Set_Target"):
+		for child in container.get_children():
+			container.remove_child(child)
+			child.queue_free()
+		current_count = 0
 	const COLS := 5
 	const SPACING_X := 96
 	const SPACING_Y := 120
 	const OFFSET_X := -230
 	const OFFSET_Y := 200
-	for i in range(count):
-		var f = FOLLOWER.instantiate()
-		var pos = Vector2(OFFSET_X + (i % COLS) * SPACING_X, OFFSET_Y + (i / COLS) * SPACING_Y)
-		f.position = pos
-		container.add_child(f)
-		f.Set_Target(f.global_position)
+	const SPREAD := 18.0
+	const OFFSCREEN_RIGHT := 450.0
+	# Remove excess followers if count decreased (e.g. piece removed)
+	if target_count < current_count:
+		var to_remove := current_count - target_count
+		for _j in range(to_remove):
+			var child = container.get_child(container.get_child_count() - 1)
+			container.remove_child(child)
+			child.queue_free()
+		current_count = container.get_child_count()
+	# Add new followers if count increased (additive: only spawn the new ones)
+	if target_count > current_count:
+		for i in range(current_count, target_count):
+			var f = FOLLOWER.instantiate()
+			var final_local = Vector2(
+				OFFSET_X + (i % COLS) * SPACING_X + randf_range(-SPREAD, SPREAD),
+				OFFSET_Y + (i / COLS) * SPACING_Y + randf_range(-SPREAD, SPREAD)
+			)
+			var start_local = final_local + Vector2(OFFSCREEN_RIGHT, randf_range(-30.0, 30.0))
+			f.position = start_local
+			container.add_child(f)
+			f.add_to_group("followers")
+			f.Set_Target(container.global_position + final_local)
