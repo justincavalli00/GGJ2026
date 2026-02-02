@@ -50,8 +50,8 @@ func _ready() -> void:
 		push_error("day: SessionData autoload not found")
 	else:
 		current_followers = _session.get_base_followers()
-	lbl_gained = get_node_or_null("Canvas/Margin_Goal/Pnl_Results/VBox_Results/Lbl_Gained")
-	lbl_smitten_num = get_node_or_null("Canvas/Margin_Goal/Pnl_Results/VBox_Results/HBox_Smitten/Lbl_Smitten_Num")
+	lbl_gained = get_node_or_null("Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/Lbl_Gained")
+	lbl_smitten_num = get_node_or_null("Canvas/Margin_Goal/Pnl_Results/Margin_Panel/VBox_Results/HBox_Smitten/Lbl_Smitten_Num")
 	bttn_next.pressed.connect(Pressed_Next)
 	pnl_results.visible = false
 	_build_totem_face()
@@ -176,10 +176,16 @@ func Start_Day():
 	print("day started")
 	pass
 	
+func _get_effective_total_followers() -> int:
+	# For every heretic the player didn't get during the day, lose 5 followers.
+	var base_total: int = _session.get_followers_added_with_smitten(followers_smitten)
+	var penalty: int = current_heretics * 5
+	return max(0, base_total - penalty)
+
 func Pressed_Next() -> void:
 	if _session == null:
 		return
-	var total: int = _session.get_followers_added_with_smitten(followers_smitten)
+	var total: int = _get_effective_total_followers()
 	var required: int = _session.get_required_followers()
 	if total >= required:
 		# Win: next round, mask persists
@@ -197,7 +203,7 @@ func Show_Results() -> void:
 	if _session == null:
 		pnl_results.visible = true
 		return
-	var total: int = _session.get_followers_added_with_smitten(followers_smitten)
+	var total: int = _get_effective_total_followers()
 	var required: int = _session.get_required_followers()
 	if lbl_required_num:
 		lbl_required_num.text = str(required)

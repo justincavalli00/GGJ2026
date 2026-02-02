@@ -8,7 +8,9 @@ var MaskScene
 var selected_maskPiece: Control = null
 @onready var _audio_mask_build: AudioStreamPlayer = $Audio_MaskBuild
 @onready var _audio_mask_discard: AudioStreamPlayer = $Audio_MaskDiscard
+@onready var _bttn_start: Button = $Panel_Start/VBox_Start/Bttn_Start
 var _mask_piece_data_list: Array[Mask_Piece_Data] = []
+const BURN_DURATION := 1.2
 var current_round: int = 1
 var _session: Node = null  # SessionData autoload, set in _ready()
 
@@ -177,14 +179,40 @@ func _on_slot_clicked(maskSlot):
 func _on_bttn_start_pressed():
 	if _session == null:
 		return
-	# Count unused offerings (masks not placed): 1 heretic per unused
-	var unused_count := 0
+	# Collect unused offering pieces (still in offering slots)
+	var unused_pieces: Array[Control] = []
 	for offering in $Panel_Offerings/HBox_Offering.get_children():
 		if offering.get_child_count() > 0:
-			unused_count += 1
-	_session.heretics_from_unused_offerings = unused_count
-	if unused_count > 0 and _audio_mask_discard and not _audio_mask_discard.playing:
+			var piece = offering.get_child(0)
+			if piece is Control:
+				unused_pieces.append(piece as Control)
+	_session.heretics_from_unused_offerings = 0
+	if unused_pieces.is_empty():
+		_start_game_after_burn()
+		return
+	# Animate each unused piece out one by one: opacity 1.2s, play discard sound, add 1 heretic each, then start game
+	_bttn_start.disabled = true
+	_burn_next_offering_piece(unused_pieces, 0)
+
+func _burn_next_offering_piece(pieces: Array[Control], index: int) -> void:
+	if index >= pieces.size():
+		_bttn_start.disabled = false
+		_start_game_after_burn()
+		return
+	var piece: Control = pieces[index]
+	if _session:
+		_session.heretics_from_unused_offerings += 1
+	if _audio_mask_discard:
 		_audio_mask_discard.play()
+	var tween := create_tween()
+	tween.tween_property(piece, "modulate", Color(1, 1, 1, 0), BURN_DURATION)
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.finished.connect(_burn_next_offering_piece.bind(pieces, index + 1))
+
+func _start_game_after_burn() -> void:
+	if _session == null:
+		return
 	# Store built mask for day scene (totem display + results)
 	_session.built_mask_pieces.clear()
 	_session.clear_followers_cache()

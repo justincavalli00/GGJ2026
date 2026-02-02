@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://cjdyacj0501vw"]
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://coqds7pgdcclo"]
 
 [ext_resource type="Texture2D" uid="uid://c6a7jggpa4tw6" path="res://art/masks/NewMask3/6.png" id="1_w721u"]
 [ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="2_w7jci"]
@@ -11,7 +11,6 @@ time_in_day = 3.0
 heretics = 5
 mask_piece_sprite = ExtResource("1_w721u")
 available_in_round = 52
-effect = "Remove 10 Followers"
 mask_type = 3
 synergy_multiplier = 1.5
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

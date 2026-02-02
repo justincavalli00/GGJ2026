@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://bb3img5n1ieau"]
+[gd_resource type="Resource" script_class="Mask_Piece_Data" format=3 uid="uid://0f4xo7layilx"]
 
 [ext_resource type="Texture2D" uid="uid://bnshdcoyacfcj" path="res://art/masks/NewMask4/6.png" id="1_ej7er"]
 [ext_resource type="Script" uid="uid://dsiteoo0w876x" path="res://mask_data/mask_piece_data.gd" id="1_tnk7p"]
@@ -6,12 +6,11 @@
 [resource]
 script = ExtResource("1_tnk7p")
 piece = "Final Mouth"
-followers = 15
+followers = 50
 time_in_day = 1.0
 heretics = 3
 mask_piece_sprite = ExtResource("1_ej7er")
 available_in_round = 32
-effect = "Add 50 Followers"
 mask_type = 4
 synergy_multiplier = 2.5
 metadata/_custom_type_script = "uid://dsiteoo0w876x"

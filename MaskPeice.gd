@@ -40,13 +40,28 @@ func _ready():
 	panel.mouse_exited.connect(_on_panel_mouse_exited)
 
 
+## Modulate color by mask type during mask builder: type 1 = green, type 2 = blue, etc.
+func _apply_modulate_by_type() -> void:
+	if mask_piece_data == null:
+		modulate = Color.WHITE
+		return
+	var tint: Color
+	match mask_piece_data.mask_type:
+		1: tint = Color(0.6, 1.0, 0.6)   # green
+		2: tint = Color(0.6, 0.7, 1.0)   # blue
+		3: tint = Color(1.0, 0.85, 0.6)  # amber
+		4: tint = Color(1.0, 0.7, 0.8)    # pink
+		_: tint = Color.WHITE
+	modulate = tint
+
 func _apply_texture_from_data() -> void:
 	if mask_piece_data == null:
 		return
 	var icon = get_node_or_null("Icon")
 	if icon is TextureRect and mask_piece_data.mask_piece_sprite != null:
 		icon.texture = mask_piece_data.mask_piece_sprite
-	
+	_apply_modulate_by_type()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -11,7 +11,6 @@ time_in_day = 2.0
 heretics = 4
 mask_piece_sprite = ExtResource("1_c76d1")
 available_in_round = 52
-effect = "Remove 5 Followers"
 mask_type = 3
 synergy_multiplier = 1.5
 metadata/_custom_type_script = "uid://dsiteoo0w876x"
